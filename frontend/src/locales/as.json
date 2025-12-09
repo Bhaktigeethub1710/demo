@@ -1,0 +1,101 @@
+{
+    "common": {
+        "login": "লগইন",
+        "logout": "লগ আউট",
+        "home": "হোম",
+        "submit": "জমা দিয়ক",
+        "cancel": "বাতিল",
+        "save": "সংৰক্ষণ",
+        "view": "চাওক",
+        "download": "ডাউনলোড",
+        "upload": "আপলোড",
+        "search": "সন্ধান",
+        "loading": "লোড হৈ আছে...",
+        "error": "ত্ৰুটি",
+        "success": "সফল",
+        "yes": "হয়",
+        "no": "নহয়",
+        "back": "পিছলৈ",
+        "next": "পৰৱৰ্তী",
+        "close": "বন্ধ",
+        "confirm": "নিশ্চিত",
+        "required": "প্ৰয়োজনীয়",
+        "selectLanguage": "ভাষা নিৰ্বাচন কৰক",
+        "welcome": "স্বাগতম"
+    },
+    "navbar": {
+        "home": "হোম",
+        "victimPortal": "ভুক্তভোগী পৰ্টেল",
+        "officerPortal": "বিষয়া পৰ্টেল",
+        "emergencyFund": "জৰুৰীকালীন পুঁজি",
+        "transparencyHub": "স্বচ্ছতা কেন্দ্ৰ",
+        "justiceWithDignity": "মৰ্যাদাৰে ন্যায়",
+        "welcomeUser": "স্বাগতম, {{name}}"
+    },
+    "hero": {
+        "badge": "সুৰক্ষিত • স্বচ্ছ • দ্ৰুত",
+        "title": "মৰ্যাদাৰে ন্যায়:",
+        "subtitle": "প্ৰত্যক্ষ সুবিধা স্থানান্তৰ",
+        "description": "PCR/PoA আইনৰ অধীনত ভুক্তভোগীসকললৈ স্বচ্ছ, ব্লকচেইন-সমৰ্থিত ব্যৱস্থাৰে দ্ৰুত সাহায্য।",
+        "applyForRelief": "সাহায্যৰ বাবে আবেদন কৰক",
+        "viewTransparencyHub": "স্বচ্ছতা কেন্দ্ৰ চাওক"
+    },
+    "portals": {
+        "selectYourPortal": "আপোনাৰ পৰ্টেল নিৰ্বাচন কৰক",
+        "accessPortal": "পৰ্টেল প্ৰবেশ কৰক",
+        "victimPortal": {
+            "title": "ভুক্তভোগী পৰ্টেল",
+            "description": "পঞ্জীয়ন কৰক, পুঁজি অনুসৰণ কৰক আৰু জৰুৰীকালীন সাহায্য পাওক।"
+        },
+        "officerPortal": {
+            "title": "বিষয়া পৰ্টেল",
+            "description": "গোচৰ পৰীক্ষা কৰক, পুঁজি অনুমোদন কৰক।"
+        },
+        "emergencyFund": {
+            "title": "জৰুৰীকালীন পুঁজি",
+            "description": "তাৎক্ষণিক আৰ্থিক সাহায্যৰ বাবে আবেদন কৰক।"
+        }
+    },
+    "login": {
+        "title": "NyayaSetu-ত লগইন কৰক",
+        "selectRole": "আগবাঢ়িবলৈ আপোনাৰ ভূমিকা নিৰ্বাচন কৰক",
+        "victim": "ভুক্তভোগী",
+        "officer": "বিষয়া",
+        "email": "ইমেইল ঠিকনা",
+        "password": "পাছৱৰ্ড",
+        "loginButton": "লগইন"
+    },
+    "victimPortal": {
+        "title": "ভুক্তভোগী পৰ্টেল",
+        "newApplication": "নতুন আবেদন",
+        "trackStatus": "স্থিতি অনুসৰণ কৰক",
+        "form": {
+            "fullName": "সম্পূৰ্ণ নাম",
+            "fatherName": "পিতৃৰ নাম",
+            "mobile": "মোবাইল নম্বৰ",
+            "email": "ইমেইল",
+            "aadhaar": "আধাৰ নম্বৰ",
+            "address": "ঠিকনা",
+            "district": "জিলা",
+            "state": "ৰাজ্য"
+        }
+    },
+    "officerPortal": {
+        "title": "বিষয়া পৰ্টেল",
+        "dashboard": "ডেশ্ববৰ্ড",
+        "pendingCases": "বিচাৰাধীন গোচৰ",
+        "approvedCases": "অনুমোদিত গোচৰ",
+        "approve": "অনুমোদন কৰক",
+        "reject": "প্ৰত্যাখ্যান কৰক"
+    },
+    "footer": {
+        "about": "NyayaSetu সম্পৰ্কে",
+        "quickLinks": "দ্ৰুত সংযোগ",
+        "contact": "যোগাযোগ",
+        "copyright": "© {{year}} NyayaSetu. সৰ্বস্বত্ব সংৰক্ষিত।"
+    },
+    "errors": {
+        "required": "এই ক্ষেত্ৰ প্ৰয়োজনীয়",
+        "invalidEmail": "অনুগ্ৰহ কৰি এটা বৈধ ইমেইল ঠিকনা দিয়ক"
+    }
+}

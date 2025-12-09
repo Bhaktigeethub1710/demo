@@ -250,6 +250,7 @@ const getGrievanceById = async (req, res) => {
 /**
  * Get all grievances (for officers/admin)
  * GET /api/grievances
+ * Query params: status, assignedToMe, caseType (atrocity/intercaste)
  */
 const getGrievances = async (req, res) => {
     try {
@@ -261,7 +262,7 @@ const getGrievances = async (req, res) => {
             });
         }
 
-        const { status, assignedToMe } = req.query;
+        const { status, assignedToMe, caseType } = req.query;
         let query = {};
 
         if (status) {
@@ -270,6 +271,11 @@ const getGrievances = async (req, res) => {
 
         if (assignedToMe === 'true') {
             query.assignedOfficer = req.user.userId;
+        }
+
+        // Filter by case type (atrocity or intercaste)
+        if (caseType && ['atrocity', 'intercaste'].includes(caseType)) {
+            query.caseType = caseType;
         }
 
         const grievances = await Grievance.find(query)
@@ -795,8 +801,178 @@ const resolveQuery = async (req, res) => {
     }
 };
 
+/**
+ * Generate unique case ID for Intercaste Marriage
+ * Format: IM-2025-{DISTRICT}-{INCREMENT}
+ */
+const generateIntercasteCaseId = async (district) => {
+    const year = new Date().getFullYear();
+    const districtCode = district.toUpperCase().replace(/\s+/g, '');
+    const prefix = `IM-${year}-${districtCode}`;
+
+    // Find last intercaste case ID with this prefix
+    const lastCase = await Grievance.findOne({
+        caseId: new RegExp(`^${prefix}`)
+    }).sort({ createdAt: -1 });
+
+    let number = 1;
+    if (lastCase) {
+        const match = lastCase.caseId.match(/-(\d+)$/);
+        if (match) {
+            number = parseInt(match[1]) + 1;
+        }
+    }
+
+    return `${prefix}-${String(number).padStart(3, '0')}`;
+};
+
+/**
+ * Create Intercaste Marriage grievance
+ * POST /api/intercaste/create
+ */
+const createIntercasteGrievance = async (req, res) => {
+    try {
+        const {
+            // Husband's Details
+            husbandName,
+            husbandAadhaar,
+            husbandMobile,
+            husbandEmail,
+            // Wife's Details
+            wifeName,
+            wifeAadhaar,
+            wifeMobile,
+            wifeEmail,
+            // Address
+            currentAddress,
+            district,
+            state,
+            pincode,
+            // SC/ST Spouse
+            scstSpouse,
+            // Bank Details
+            accountHolderName,
+            bankName,
+            accountNumber,
+            ifscCode
+        } = req.body;
+
+        // Validate required fields
+        if (!husbandName || !husbandAadhaar || !husbandMobile ||
+            !wifeName || !wifeAadhaar || !wifeMobile ||
+            !currentAddress || !district || !state || !scstSpouse ||
+            !accountHolderName || !accountNumber || !ifscCode) {
+            return res.status(400).json({
+                success: false,
+                message: 'All required fields must be provided (husband details, wife details, address, bank details)'
+            });
+        }
+
+        // Generate unique intercaste case ID (IM-YYYY-DISTRICT-XXX)
+        const caseId = await generateIntercasteCaseId(district);
+
+        // Create new intercaste grievance
+        const grievance = new Grievance({
+            userId: req.user.userId,
+            caseType: 'intercaste',
+            caseId,
+            // Husband Details
+            husbandName,
+            husbandAadhaar,
+            husbandMobile,
+            husbandEmail,
+            // Wife Details
+            wifeName,
+            wifeAadhaar,
+            wifeMobile,
+            wifeEmail,
+            // Address
+            currentAddress,
+            district,
+            state,
+            pincode,
+            // SC/ST Spouse
+            scstSpouse,
+            // Bank Details  
+            accountHolderName,
+            bankName,
+            accountNumber,
+            ifscCode,
+            // Status
+            status: 'pending',
+            submittedAt: new Date()
+        });
+
+        await grievance.save();
+
+        // Send confirmation email
+        const userEmail = husbandEmail || wifeEmail || req.user.email;
+        if (userEmail) {
+            const emailContent = `
+                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                    <h2 style="color: #ec4899;">Intercaste Marriage Application Submitted Successfully</h2>
+                    <p>Dear ${husbandName} & ${wifeName},</p>
+                    <p>Your intercaste marriage relief application has been successfully registered in the NyayaSetu system.</p>
+                    
+                    <div style="background: #fdf2f8; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                        <h3 style="margin-top: 0; color: #be185d;">Application Details:</h3>
+                        <p><strong>Case ID:</strong> ${caseId}</p>
+                        <p><strong>Husband:</strong> ${husbandName}</p>
+                        <p><strong>Wife:</strong> ${wifeName}</p>
+                        <p><strong>SC/ST Spouse:</strong> ${scstSpouse === 'husband' ? husbandName : wifeName}</p>
+                        <p><strong>Submitted On:</strong> ${new Date().toLocaleString('en-IN')}</p>
+                    </div>
+                    
+                    <h3>Next Steps:</h3>
+                    <ol>
+                        <li>Track your application status using your Case ID: <strong>${caseId}</strong></li>
+                        <li>An officer will review your documents</li>
+                        <li>You will be notified once verification is complete</li>
+                    </ol>
+                    
+                    <p><strong>Important:</strong> Please save your Case ID (${caseId}) for future reference.</p>
+                    
+                    <p style="margin-top: 30px;">For any queries, please contact us at support@nyayasetu.gov.in</p>
+                    
+                    <p>Best Regards,<br>NyayaSetu Team</p>
+                </div>
+            `;
+
+            // Send email in background
+            sendEmail({
+                to: userEmail,
+                subject: `Intercaste Marriage Application Registered - ${caseId}`,
+                html: emailContent
+            }).then(() => {
+                console.log(`✅ Intercaste confirmation email sent to ${userEmail}`);
+            }).catch((emailError) => {
+                console.error('❌ Failed to send intercaste confirmation email:', emailError);
+            });
+        }
+
+        res.status(201).json({
+            success: true,
+            message: 'Intercaste marriage application submitted successfully',
+            data: {
+                grievanceId: grievance._id,
+                caseId: grievance.caseId,
+                status: grievance.status,
+                submittedAt: grievance.submittedAt
+            }
+        });
+    } catch (error) {
+        console.error('Error creating intercaste grievance:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to submit intercaste marriage application',
+            error: error.message
+        });
+    }
+};
+
 module.exports = {
     createGrievance,
+    createIntercasteGrievance,
     getMyGrievances,
     getGrievanceById,
     getGrievances,

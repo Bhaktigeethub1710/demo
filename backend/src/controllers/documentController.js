@@ -1,12 +1,16 @@
 const Document = require('../models/Document');
 const Grievance = require('../models/Grievance');
 const storageService = require('../services/localStorageService');
+const documentVerificationService = require('../services/documentVerificationService');
 
 /**
  * Upload a document to Google Drive
  * POST /api/documents/upload
  */
 exports.uploadDocument = async (req, res) => {
+    console.log('\n======================================');
+    console.log('📥 DOCUMENT UPLOAD ENDPOINT HIT');
+    console.log('======================================');
     try {
         // Check if file was uploaded
         if (!req.file) {
@@ -52,6 +56,32 @@ exports.uploadDocument = async (req, res) => {
             });
         }
 
+        // ========== AI DOCUMENT VERIFICATION ==========
+        // Verify the uploaded document matches the expected type
+        console.log(`🔍 Verifying document type: ${documentType}`);
+        const verificationResult = await documentVerificationService.verifyDocumentType(
+            req.file.buffer,
+            req.file.mimetype,
+            documentType
+        );
+
+        if (!verificationResult.isValid) {
+            console.log(`❌ Document verification failed:`, verificationResult);
+            return res.status(400).json({
+                success: false,
+                message: verificationResult.message,
+                detectedType: verificationResult.detectedType,
+                expectedType: documentType,
+                verification: {
+                    verified: false,
+                    confidence: verificationResult.confidence
+                }
+            });
+        }
+
+        console.log(`✅ Document verification passed:`, verificationResult.verified ? 'Verified' : 'Skipped');
+        // ========== END VERIFICATION ==========
+
         // Create or get grievance folder in local storage
         const folderId = await storageService.createGrievanceFolder(grievanceId);
 
@@ -81,13 +111,20 @@ exports.uploadDocument = async (req, res) => {
 
         res.status(201).json({
             success: true,
-            message: 'Document uploaded successfully',
+            message: verificationResult.verified
+                ? 'Document uploaded and verified successfully'
+                : 'Document uploaded successfully',
             data: {
                 documentId: document._id,
                 documentType: document.documentType,
                 fileName: document.originalFileName,
                 fileSize: document.fileSize,
-                uploadedAt: document.uploadedAt
+                uploadedAt: document.uploadedAt,
+                verification: {
+                    verified: verificationResult.verified || false,
+                    skipped: verificationResult.skipped || false,
+                    confidence: verificationResult.confidence || null
+                }
             }
         });
     } catch (error) {
@@ -95,6 +132,83 @@ exports.uploadDocument = async (req, res) => {
         res.status(500).json({
             success: false,
             message: 'Failed to upload document',
+            error: error.message
+        });
+    }
+};
+
+/**
+ * Verify a document type WITHOUT uploading (pre-submission check)
+ * POST /api/documents/verify
+ * This is called when user selects a file, BEFORE form submission
+ */
+exports.verifyDocument = async (req, res) => {
+    console.log('\n======================================');
+    console.log('🔍 DOCUMENT VERIFY ENDPOINT HIT');
+    console.log('======================================');
+
+    try {
+        // Check if file was provided
+        if (!req.file) {
+            return res.status(400).json({
+                success: false,
+                message: 'No file provided for verification'
+            });
+        }
+
+        const { expectedDocumentType } = req.body;
+
+        if (!expectedDocumentType) {
+            return res.status(400).json({
+                success: false,
+                message: 'Expected document type is required'
+            });
+        }
+
+        console.log(`📁 File: ${req.file.originalname} (${req.file.mimetype})`);
+        console.log(`📋 Expected type: ${expectedDocumentType}`);
+
+        // Verify the document
+        const verificationResult = await documentVerificationService.verifyDocumentType(
+            req.file.buffer,
+            req.file.mimetype,
+            expectedDocumentType
+        );
+
+        console.log(`📊 Verification result:`, verificationResult);
+
+        // Return verification result
+        if (verificationResult.isValid) {
+            return res.status(200).json({
+                success: true,
+                message: verificationResult.message,
+                verification: {
+                    isValid: true,
+                    verified: verificationResult.verified || false,
+                    skipped: verificationResult.skipped || false,
+                    detectedType: verificationResult.detectedType || null,
+                    confidence: verificationResult.confidence || null,
+                    matchedKeywords: verificationResult.matchedKeywords || []
+                }
+            });
+        } else {
+            return res.status(400).json({
+                success: false,
+                message: verificationResult.message,
+                verification: {
+                    isValid: false,
+                    verified: false,
+                    detectedType: verificationResult.detectedType,
+                    expectedType: expectedDocumentType,
+                    confidence: verificationResult.confidence
+                }
+            });
+        }
+    } catch (error) {
+        console.error('Error verifying document:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to verify document',
             error: error.message
         });
     }

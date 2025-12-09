@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useTranslation } from "react-i18next";
 import { Shield, Users, Building2, BarChart3, Landmark, FileText } from "lucide-react";
 import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -13,6 +14,7 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { login } = useAuth();
+  const { t } = useTranslation();
 
   const [selectedRole, setSelectedRole] = useState(null);
   const [email, setEmail] = useState("");
@@ -71,15 +73,15 @@ const Login = () => {
   const roles = [
     {
       id: "victim",
-      title: "Victim/Applicant",
-      description: "Apply for relief and track your case",
+      title: t('login.victim'),
+      description: t('portals.victimPortal.description'),
       icon: Users,
       color: "bg-accent",
     },
     {
       id: "officer",
-      title: "District/State Officer",
-      description: "Verify and process applications",
+      title: t('login.officer'),
+      description: t('portals.officerPortal.description'),
       icon: FileText,
       color: "bg-primary",
     },
@@ -97,10 +99,10 @@ const Login = () => {
                 <Shield className="h-8 w-8 text-primary-foreground" />
               </div>
               <h1 className="text-3xl md:text-4xl font-bold mb-4">
-                Select Your Role
+                {t('login.selectRole')}
               </h1>
               <p className="text-muted-foreground">
-                Choose the portal appropriate for your access level
+                {t('portals.roleBasedAccess')}
               </p>
             </div>
 

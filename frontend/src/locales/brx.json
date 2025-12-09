@@ -1,0 +1,101 @@
+{
+    "common": {
+        "login": "लग इन",
+        "logout": "लग आउट",
+        "home": "न",
+        "submit": "होबथा",
+        "cancel": "थांखिया",
+        "save": "सानजाया",
+        "view": "नाया",
+        "download": "डाउनलड",
+        "upload": "अपलड",
+        "search": "नायना",
+        "loading": "लड जागोन...",
+        "error": "गोरोन्था",
+        "success": "जाथाय",
+        "yes": "मा",
+        "no": "आं",
+        "back": "उनाव",
+        "next": "गावाव",
+        "close": "बन्द खालाम",
+        "confirm": "पक्का खालाम",
+        "required": "गोसोख",
+        "selectLanguage": "राव सायख",
+        "welcome": "सुस्वागतम"
+    },
+    "navbar": {
+        "home": "न",
+        "victimPortal": "सोङाव मानसि पर्टल",
+        "officerPortal": "अफिसार पर्टल",
+        "emergencyFund": "गोग्लैबो फान्ड",
+        "transparencyHub": "खुला सेन्टार",
+        "justiceWithDignity": "मानाव लोगोसे न्याय",
+        "welcomeUser": "सुस्वागतम, {{name}}"
+    },
+    "hero": {
+        "badge": "थाबाय • खुला • गोख्रों",
+        "title": "मानाव लोगोसे न्याय:",
+        "subtitle": "गोजोन फायदा ट्रान्सफार",
+        "description": "PCR/PoA आइननि थाखाय सोङाव मानसिफोरखौ खुला, ब्लकचेन लोगोसे गोख्रों मदद।",
+        "applyForRelief": "मदद नि थाखाय अप्लाय खालाम",
+        "viewTransparencyHub": "खुला सेन्टार ना"
+    },
+    "portals": {
+        "selectYourPortal": "नोंथांनि पर्टल सायख",
+        "accessPortal": "पर्टल एक्सेस खालाम",
+        "victimPortal": {
+            "title": "सोङाव मानसि पर्टल",
+            "description": "रेजिस्टार खालाम, फान्ड ट्रेक खालाम आरो गोग्लैबो मदद लाब।"
+        },
+        "officerPortal": {
+            "title": "अफिसार पर्टल",
+            "description": "केस भेरिफाय खालाम, फान्ड मान्जुर खालाम।"
+        },
+        "emergencyFund": {
+            "title": "गोग्लैबो फान्ड",
+            "description": "बेसेन टाका मदद नि थाखाय अप्लाय खालाम।"
+        }
+    },
+    "login": {
+        "title": "NyayaSetu आव लग इन खालाम",
+        "selectRole": "गावाव थांनाय नि थाखाय नोंथांनि गोदान सायख",
+        "victim": "सोङाव मानसि",
+        "officer": "अफिसार",
+        "email": "इमेल थिखना",
+        "password": "पासवार्ड",
+        "loginButton": "लग इन"
+    },
+    "victimPortal": {
+        "title": "सोङाव मानसि पर्टल",
+        "newApplication": "गोदान अप्लिकेशन",
+        "trackStatus": "स्टेटास ट्रेक खालाम",
+        "form": {
+            "fullName": "गासै मुं",
+            "fatherName": "आफानि मुं",
+            "mobile": "मबाइल नम्बार",
+            "email": "इमेल",
+            "aadhaar": "आधार नम्बार",
+            "address": "थिखना",
+            "district": "जिला",
+            "state": "राज"
+        }
+    },
+    "officerPortal": {
+        "title": "अफिसार पर्टल",
+        "dashboard": "डेशबर्ड",
+        "pendingCases": "थानाय केस",
+        "approvedCases": "मान्जुर केस",
+        "approve": "मान्जुर खालाम",
+        "reject": "थांखिया"
+    },
+    "footer": {
+        "about": "NyayaSetu नि बिथांआव",
+        "quickLinks": "गोख्रों लिंक",
+        "contact": "सम्पर्क",
+        "copyright": "© {{year}} NyayaSetu. गासै हक थाबाय।"
+    },
+    "errors": {
+        "required": "बे फिल्ड गोसोख",
+        "invalidEmail": "खुसि खालाम मोनसे इमेल थिखना हो"
+    }
+}

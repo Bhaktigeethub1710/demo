@@ -1,0 +1,101 @@
+{
+    "common": {
+        "login": "لاگ ان",
+        "logout": "لاگ آؤٹ",
+        "home": "ہوم",
+        "submit": "جمع کریں",
+        "cancel": "منسوخ",
+        "save": "محفوظ کریں",
+        "view": "دیکھیں",
+        "download": "ڈاؤن لوڈ",
+        "upload": "اپ لوڈ",
+        "search": "تلاش کریں",
+        "loading": "لوڈ ہو رہا ہے...",
+        "error": "خرابی",
+        "success": "کامیابی",
+        "yes": "ہاں",
+        "no": "نہیں",
+        "back": "واپس",
+        "next": "اگلا",
+        "close": "بند کریں",
+        "confirm": "تصدیق کریں",
+        "required": "ضروری",
+        "selectLanguage": "زبان منتخب کریں",
+        "welcome": "خوش آمدید"
+    },
+    "navbar": {
+        "home": "ہوم",
+        "victimPortal": "متاثر پورٹل",
+        "officerPortal": "افسر پورٹل",
+        "emergencyFund": "ایمرجنسی فنڈ",
+        "transparencyHub": "شفافیت مرکز",
+        "justiceWithDignity": "عزت کے ساتھ انصاف",
+        "welcomeUser": "خوش آمدید، {{name}}"
+    },
+    "hero": {
+        "badge": "محفوظ • شفاف • تیز",
+        "title": "عزت کے ساتھ انصاف:",
+        "subtitle": "براہ راست فائدہ منتقلی",
+        "description": "PCR/PoA قوانین کے تحت متاثرین کو شفاف، بلاک چین سے تعاون یافتہ نظام کے ذریعے فوری امداد۔",
+        "applyForRelief": "امداد کے لیے درخواست دیں",
+        "viewTransparencyHub": "شفافیت مرکز دیکھیں"
+    },
+    "portals": {
+        "selectYourPortal": "اپنا پورٹل منتخب کریں",
+        "accessPortal": "پورٹل تک رسائی",
+        "victimPortal": {
+            "title": "متاثر پورٹل",
+            "description": "رجسٹر کریں، فنڈ ٹریک کریں اور ایمرجنسی امداد حاصل کریں۔"
+        },
+        "officerPortal": {
+            "title": "افسر پورٹل",
+            "description": "کیسز کی تصدیق کریں، فنڈ منظور کریں۔"
+        },
+        "emergencyFund": {
+            "title": "ایمرجنسی فنڈ",
+            "description": "فوری مالی امداد کے لیے درخواست دیں۔"
+        }
+    },
+    "login": {
+        "title": "NyayaSetu میں لاگ ان کریں",
+        "selectRole": "جاری رکھنے کے لیے اپنا کردار منتخب کریں",
+        "victim": "متاثر",
+        "officer": "افسر",
+        "email": "ای میل پتہ",
+        "password": "پاس ورڈ",
+        "loginButton": "لاگ ان"
+    },
+    "victimPortal": {
+        "title": "متاثر پورٹل",
+        "newApplication": "نئی درخواست",
+        "trackStatus": "حیثیت ٹریک کریں",
+        "form": {
+            "fullName": "پورا نام",
+            "fatherName": "والد کا نام",
+            "mobile": "موبائل نمبر",
+            "email": "ای میل",
+            "aadhaar": "آدھار نمبر",
+            "address": "پتہ",
+            "district": "ضلع",
+            "state": "ریاست"
+        }
+    },
+    "officerPortal": {
+        "title": "افسر پورٹل",
+        "dashboard": "ڈیش بورڈ",
+        "pendingCases": "زیر التوا کیسز",
+        "approvedCases": "منظور شدہ کیسز",
+        "approve": "منظور کریں",
+        "reject": "مسترد کریں"
+    },
+    "footer": {
+        "about": "NyayaSetu کے بارے میں",
+        "quickLinks": "فوری لنکس",
+        "contact": "رابطہ",
+        "copyright": "© {{year}} NyayaSetu. جملہ حقوق محفوظ ہیں۔"
+    },
+    "errors": {
+        "required": "یہ خانہ ضروری ہے",
+        "invalidEmail": "براہ کرم ایک درست ای میل پتہ درج کریں"
+    }
+}

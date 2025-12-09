@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { grievanceAPI, ticketAPI } from "@/services/api";
@@ -37,6 +38,7 @@ import {
 
 const OfficerPortal = () => {
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCase, setSelectedCase] = useState(null);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
@@ -45,6 +47,7 @@ const OfficerPortal = () => {
   const [cases, setCases] = useState([]);
   const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState("all"); // all, pending, approved, rejected
+  const [caseTypeFilter, setCaseTypeFilter] = useState("all"); // all, atrocity, intercaste
   const [error, setError] = useState("");
 
   // Raise Query Modal State
@@ -76,13 +79,15 @@ const OfficerPortal = () => {
   // Fetch cases from API
   useEffect(() => {
     fetchCases();
-  }, [statusFilter]);
+  }, [statusFilter, caseTypeFilter]);
 
   const fetchCases = async () => {
     setLoading(true);
     setError("");
     try {
-      const filters = statusFilter !== "all" ? { status: statusFilter } : {};
+      const filters = {};
+      if (statusFilter !== "all") filters.status = statusFilter;
+      if (caseTypeFilter !== "all") filters.caseType = caseTypeFilter;
       const response = await grievanceAPI.getAll(filters);
       setCases(response.data || []);
     } catch (error) {
@@ -953,6 +958,35 @@ const OfficerPortal = () => {
                       </Button>
                     </div>
 
+                    {/* Case Type Filter Tabs */}
+                    <div className="flex gap-2 mb-6">
+                      <span className="text-sm text-muted-foreground mr-2 self-center">Case Type:</span>
+                      <Button
+                        size="sm"
+                        variant={caseTypeFilter === "all" ? "default" : "outline"}
+                        onClick={() => setCaseTypeFilter("all")}
+                      >
+                        All
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant={caseTypeFilter === "atrocity" ? "default" : "outline"}
+                        onClick={() => setCaseTypeFilter("atrocity")}
+                        className={caseTypeFilter === "atrocity" ? "bg-blue-600 hover:bg-blue-700" : ""}
+                      >
+                        <Shield className="h-4 w-4 mr-2" />
+                        Atrocity
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant={caseTypeFilter === "intercaste" ? "default" : "outline"}
+                        onClick={() => setCaseTypeFilter("intercaste")}
+                        className={caseTypeFilter === "intercaste" ? "bg-pink-600 hover:bg-pink-700" : ""}
+                      >
+                        <Users className="h-4 w-4 mr-2" />
+                        Intercaste
+                      </Button>
+                    </div>
 
                     {/* Loading State */}
                     {loading && (
@@ -1346,6 +1380,11 @@ const OfficerPortal = () => {
                 <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
                   <FileText className="h-5 w-5 text-primary" />
                   Case Information
+                  {selectedCase.caseType === 'intercaste' && (
+                    <Badge className="bg-pink-500/20 text-pink-500 border border-pink-500/30 ml-2">
+                      Intercaste Marriage
+                    </Badge>
+                  )}
                 </h3>
                 <div className="grid md:grid-cols-2 gap-4 text-sm">
                   <div>
@@ -1356,10 +1395,12 @@ const OfficerPortal = () => {
                     <p className="text-muted-foreground">State</p>
                     <p className="font-medium">{selectedCase.state || "N/A"}</p>
                   </div>
-                  <div>
-                    <p className="text-muted-foreground">Police Station</p>
-                    <p className="font-medium">{selectedCase.policeStation || "N/A"}</p>
-                  </div>
+                  {selectedCase.caseType !== 'intercaste' && (
+                    <div>
+                      <p className="text-muted-foreground">Police Station</p>
+                      <p className="font-medium">{selectedCase.policeStation || "N/A"}</p>
+                    </div>
+                  )}
                   <div>
                     <p className="text-muted-foreground">Status</p>
                     <p className="font-medium capitalize">{selectedCase.status || "N/A"}</p>
@@ -1375,65 +1416,138 @@ const OfficerPortal = () => {
                 </div>
               </div>
 
-              {/* Personal Information */}
+              {/* Personal Information - Conditional based on caseType */}
               <div>
                 <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
                   <Users className="h-5 w-5 text-primary" />
-                  Personal Information
+                  {selectedCase.caseType === 'intercaste' ? 'Applicant Details' : 'Personal Information'}
                 </h3>
-                <div className="grid md:grid-cols-2 gap-4 text-sm">
-                  <div>
-                    <p className="text-muted-foreground">Aadhaar Number</p>
-                    <p className="font-medium">{selectedCase.aadhaarNumber || "N/A"}</p>
-                  </div>
-                  <div>
-                    <p className="text-muted-foreground">Mobile Number</p>
-                    <p className="font-medium">{selectedCase.mobileNumber || "N/A"}</p>
-                  </div>
-                  <div>
-                    <p className="text-muted-foreground">Email</p>
-                    <p className="font-medium">{selectedCase.email || "N/A"}</p>
-                  </div>
-                </div>
-              </div>
 
-              {/* Incident Details */}
-              <div className="border-t pt-6">
-                <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                  <AlertCircle className="h-5 w-5 text-primary" />
-                  Incident Details
-                </h3>
-                <div className="grid md:grid-cols-2 gap-4 text-sm">
-                  <div>
-                    <p className="text-muted-foreground">Type of Atrocity</p>
-                    <p className="font-medium">{selectedCase.typeOfAtrocity || "N/A"}</p>
+                {selectedCase.caseType === 'intercaste' ? (
+                  /* Intercaste Marriage - Husband & Wife Details */
+                  <div className="space-y-4">
+                    {/* Husband's Details */}
+                    <div className="bg-blue-50 dark:bg-blue-950/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                      <h4 className="font-medium text-blue-700 dark:text-blue-400 mb-3">Husband's Details</h4>
+                      <div className="grid md:grid-cols-2 gap-4 text-sm">
+                        <div>
+                          <p className="text-muted-foreground">Full Name</p>
+                          <p className="font-medium">{selectedCase.husbandName || "N/A"}</p>
+                        </div>
+                        <div>
+                          <p className="text-muted-foreground">Aadhaar Number</p>
+                          <p className="font-medium font-mono">{selectedCase.husbandAadhaar || "N/A"}</p>
+                        </div>
+                        <div>
+                          <p className="text-muted-foreground">Mobile Number</p>
+                          <p className="font-medium">{selectedCase.husbandMobile || "N/A"}</p>
+                        </div>
+                        <div>
+                          <p className="text-muted-foreground">Email</p>
+                          <p className="font-medium">{selectedCase.husbandEmail || "N/A"}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Wife's Details */}
+                    <div className="bg-pink-50 dark:bg-pink-950/20 p-4 rounded-lg border border-pink-200 dark:border-pink-800">
+                      <h4 className="font-medium text-pink-700 dark:text-pink-400 mb-3">Wife's Details</h4>
+                      <div className="grid md:grid-cols-2 gap-4 text-sm">
+                        <div>
+                          <p className="text-muted-foreground">Full Name</p>
+                          <p className="font-medium">{selectedCase.wifeName || "N/A"}</p>
+                        </div>
+                        <div>
+                          <p className="text-muted-foreground">Aadhaar Number</p>
+                          <p className="font-medium font-mono">{selectedCase.wifeAadhaar || "N/A"}</p>
+                        </div>
+                        <div>
+                          <p className="text-muted-foreground">Mobile Number</p>
+                          <p className="font-medium">{selectedCase.wifeMobile || "N/A"}</p>
+                        </div>
+                        <div>
+                          <p className="text-muted-foreground">Email</p>
+                          <p className="font-medium">{selectedCase.wifeEmail || "N/A"}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* SC/ST Spouse */}
+                    <div className="bg-purple-50 dark:bg-purple-950/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                      <div className="text-sm">
+                        <p className="text-muted-foreground">SC/ST Spouse</p>
+                        <p className="font-medium capitalize">{selectedCase.scstSpouse || "N/A"}</p>
+                      </div>
+                    </div>
+
+                    {/* Current Address */}
+                    {selectedCase.currentAddress && (
+                      <div className="mt-4">
+                        <p className="text-muted-foreground text-sm mb-2">Current Address</p>
+                        <div className="bg-muted/30 rounded-lg p-4">
+                          <p className="text-sm whitespace-pre-wrap">{selectedCase.currentAddress}</p>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  <div>
-                    <p className="text-muted-foreground">Date of Incident</p>
-                    <p className="font-medium">
-                      {selectedCase.dateOfIncident
-                        ? new Date(selectedCase.dateOfIncident).toLocaleDateString()
-                        : "N/A"}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-muted-foreground">Date of FIR Registration</p>
-                    <p className="font-medium">
-                      {selectedCase.dateOfFirRegistration
-                        ? new Date(selectedCase.dateOfFirRegistration).toLocaleDateString()
-                        : "N/A"}
-                    </p>
-                  </div>
-                </div>
-                {selectedCase.incidentDescription && (
-                  <div className="mt-4">
-                    <p className="text-muted-foreground text-sm mb-2">Incident Description</p>
-                    <div className="bg-muted/30 rounded-lg p-4">
-                      <p className="text-sm whitespace-pre-wrap">{selectedCase.incidentDescription}</p>
+                ) : (
+                  /* Atrocity Cases - Normal Personal Info */
+                  <div className="grid md:grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <p className="text-muted-foreground">Aadhaar Number</p>
+                      <p className="font-medium">{selectedCase.aadhaarNumber || "N/A"}</p>
+                    </div>
+                    <div>
+                      <p className="text-muted-foreground">Mobile Number</p>
+                      <p className="font-medium">{selectedCase.mobileNumber || "N/A"}</p>
+                    </div>
+                    <div>
+                      <p className="text-muted-foreground">Email</p>
+                      <p className="font-medium">{selectedCase.email || "N/A"}</p>
                     </div>
                   </div>
                 )}
               </div>
+
+              {/* Incident Details - Only for Atrocity cases */}
+              {selectedCase.caseType !== 'intercaste' && (
+                <div className="border-t pt-6">
+                  <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                    <AlertCircle className="h-5 w-5 text-primary" />
+                    Incident Details
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <p className="text-muted-foreground">Type of Atrocity</p>
+                      <p className="font-medium">{selectedCase.typeOfAtrocity || "N/A"}</p>
+                    </div>
+                    <div>
+                      <p className="text-muted-foreground">Date of Incident</p>
+                      <p className="font-medium">
+                        {selectedCase.dateOfIncident
+                          ? new Date(selectedCase.dateOfIncident).toLocaleDateString()
+                          : "N/A"}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-muted-foreground">Date of FIR Registration</p>
+                      <p className="font-medium">
+                        {selectedCase.dateOfFirRegistration
+                          ? new Date(selectedCase.dateOfFirRegistration).toLocaleDateString()
+                          : "N/A"}
+                      </p>
+                    </div>
+                  </div>
+                  {selectedCase.incidentDescription && (
+                    <div className="mt-4">
+                      <p className="text-muted-foreground text-sm mb-2">Incident Description</p>
+                      <div className="bg-muted/30 rounded-lg p-4">
+                        <p className="text-sm whitespace-pre-wrap">{selectedCase.incidentDescription}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
 
               {/* Bank Details */}
               <div className="border-t pt-6">

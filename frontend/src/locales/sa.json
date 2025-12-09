@@ -1,0 +1,101 @@
+{
+    "common": {
+        "login": "प्रवेशः",
+        "logout": "निर्गमनम्",
+        "home": "गृहम्",
+        "submit": "प्रस्तुतम्",
+        "cancel": "निरसनम्",
+        "save": "रक्षणम्",
+        "view": "दर्शनम्",
+        "download": "अवतारणम्",
+        "upload": "उत्तारणम्",
+        "search": "अन्वेषणम्",
+        "loading": "भारणम्...",
+        "error": "दोषः",
+        "success": "सफलता",
+        "yes": "आम्",
+        "no": "न",
+        "back": "पृष्ठतः",
+        "next": "अग्रे",
+        "close": "पिधानम्",
+        "confirm": "पुष्टिः",
+        "required": "आवश्यकम्",
+        "selectLanguage": "भाषां चिनुत",
+        "welcome": "स्वागतम्"
+    },
+    "navbar": {
+        "home": "गृहम्",
+        "victimPortal": "पीडितद्वारम्",
+        "officerPortal": "अधिकारिद्वारम्",
+        "emergencyFund": "आपत्कालिकनिधिः",
+        "transparencyHub": "पारदर्शिताकेन्द्रम्",
+        "justiceWithDignity": "गौरवेण न्यायः",
+        "welcomeUser": "स्वागतम्, {{name}}"
+    },
+    "hero": {
+        "badge": "सुरक्षितम् • पारदर्शकम् • द्रुतम्",
+        "title": "गौरवेण न्यायः:",
+        "subtitle": "प्रत्यक्षलाभहस्तान्तरणम्",
+        "description": "PCR/PoA विधानाधीन पीडितेभ्यः पारदर्शक-ब्लॉकचेन-समर्थितप्रणाल्या द्रुत सहायता।",
+        "applyForRelief": "सहायतार्थं निवेदनम्",
+        "viewTransparencyHub": "पारदर्शिताकेन्द्रं पश्यतु"
+    },
+    "portals": {
+        "selectYourPortal": "स्वद्वारं चिनुत",
+        "accessPortal": "द्वारप्रवेशः",
+        "victimPortal": {
+            "title": "पीडितद्वारम्",
+            "description": "पञ्जीकरणं कुरुत, निधिं अनुसरत, आपत्कालिकसहायतां प्राप्नुत।"
+        },
+        "officerPortal": {
+            "title": "अधिकारिद्वारम्",
+            "description": "प्रकरणानि परीक्ष्य निधिं स्वीकुरुत।"
+        },
+        "emergencyFund": {
+            "title": "आपत्कालिकनिधिः",
+            "description": "तात्कालिकार्थिकसहायतार्थं निवेदनम्।"
+        }
+    },
+    "login": {
+        "title": "NyayaSetu प्रवेशः",
+        "selectRole": "अग्रे गन्तुं स्वभूमिकां चिनुत",
+        "victim": "पीडितः",
+        "officer": "अधिकारी",
+        "email": "विद्युत्पत्रसङ्केतः",
+        "password": "कूटशब्दः",
+        "loginButton": "प्रवेशः"
+    },
+    "victimPortal": {
+        "title": "पीडितद्वारम्",
+        "newApplication": "नूतननिवेदनम्",
+        "trackStatus": "स्थितिअनुसरणम्",
+        "form": {
+            "fullName": "पूर्णनाम",
+            "fatherName": "पितुर्नाम",
+            "mobile": "चलदूरभाषक्रमाङ्कः",
+            "email": "विद्युत्पत्रम्",
+            "aadhaar": "आधारक्रमाङ्कः",
+            "address": "सङ्केतः",
+            "district": "जनपदः",
+            "state": "राज्यम्"
+        }
+    },
+    "officerPortal": {
+        "title": "अधिकारिद्वारम्",
+        "dashboard": "नियन्त्रणफलकम्",
+        "pendingCases": "विचाराधीनप्रकरणानि",
+        "approvedCases": "स्वीकृतप्रकरणानि",
+        "approve": "स्वीकुरुत",
+        "reject": "अस्वीकुरुत"
+    },
+    "footer": {
+        "about": "NyayaSetu विषयके",
+        "quickLinks": "द्रुतसम्पर्काः",
+        "contact": "सम्पर्कः",
+        "copyright": "© {{year}} NyayaSetu. सर्वाधिकाराः सुरक्षिताः।"
+    },
+    "errors": {
+        "required": "एतत् क्षेत्रम् आवश्यकम्",
+        "invalidEmail": "कृपया वैधं विद्युत्पत्रसङ्केतं ददातु"
+    }
+}

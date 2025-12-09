@@ -113,6 +113,21 @@ All colors MUST be HSL.
     @apply bg-background text-foreground font-sans antialiased;
   }
 
+  /* RTL Support for Urdu, Kashmiri, Sindhi */
+  html[dir="rtl"] {
+    direction: rtl;
+  }
+
+  html[dir="rtl"] body {
+    text-align: right;
+  }
+
+  /* Ensure LTR for specific elements even in RTL mode */
+  html[dir="rtl"] .ltr-always {
+    direction: ltr;
+    text-align: left;
+  }
+
   h1,
   h2,
   h3,
@@ -250,4 +265,214 @@ All colors MUST be HSL.
   .dark .overflow-y-auto::-webkit-scrollbar-thumb:hover {
     background: #64748b;
   }
+}
+
+/* ===== Hero Slideshow Styles ===== */
+.hero-slideshow {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  background: var(--gradient-hero);
+}
+
+@media (max-width: 768px) {
+  .hero-slideshow {
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-slideshow {
+    height: 180px;
+  }
+}
+
+.slideshow-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Navigation Arrows */
+.slide-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.hero-slideshow:hover .slide-arrow {
+  opacity: 1;
+}
+
+.slide-arrow:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.slide-arrow-left {
+  left: 16px;
+}
+
+.slide-arrow-right {
+  right: 16px;
+}
+
+@media (max-width: 768px) {
+  .slide-arrow {
+    width: 36px;
+    height: 36px;
+    opacity: 1;
+  }
+
+  .slide-arrow-left {
+    left: 8px;
+  }
+
+  .slide-arrow-right {
+    right: 8px;
+  }
+}
+
+/* Navigation Dots */
+.slide-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 10px;
+}
+
+.slide-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.slide-dot:hover {
+  background: rgba(255, 255, 255, 0.7);
+  transform: scale(1.2);
+}
+
+.slide-dot.active {
+  background: white;
+  border-color: white;
+  transform: scale(1.2);
+}
+
+@media (max-width: 480px) {
+  .slide-dots {
+    bottom: 10px;
+    gap: 8px;
+  }
+
+  .slide-dot {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* Progress Bar */
+.slide-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 10;
+}
+
+.slide-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #f97316, #fb923c);
+  transition: width 0.5s ease;
+}
+
+/* ===== Custom Checkbox Styles ===== */
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  background-color: transparent;
+  border: 2px solid #000000;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+input[type="checkbox"]:checked {
+  background-color: hsl(221 83% 53%);
+  border-color: hsl(221 83% 53%);
+}
+
+input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  width: 0.3rem;
+  height: 0.55rem;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+input[type="checkbox"]:focus {
+  outline: 2px solid hsl(221 83% 53%);
+  outline-offset: 2px;
+}
+
+input[type="checkbox"]:hover:not(:checked) {
+  border-color: hsl(221 83% 53%);
+}
+
+/* Dark mode checkbox styles */
+.dark input[type="checkbox"] {
+  border-color: #ffffff;
+}
+
+.dark input[type="checkbox"]:checked {
+  background-color: hsl(221 83% 60%);
+  border-color: hsl(221 83% 60%);
 }

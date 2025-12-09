@@ -1,0 +1,101 @@
+{
+    "common": {
+        "login": "ᱞᱚᱜᱤᱱ",
+        "logout": "ᱞᱚᱜ ᱟᱣᱴ",
+        "home": "ᱚᱲᱟᱜ",
+        "submit": "ᱡᱚᱢᱟ",
+        "cancel": "ᱵᱟᱹᱫ",
+        "save": "ᱥᱟᱸᱪᱟᱣ",
+        "view": "ᱧᱮᱞ",
+        "download": "ᱰᱟᱣᱱᱞᱚᱰ",
+        "upload": "ᱟᱯᱞᱚᱰ",
+        "search": "ᱥᱮᱸᱫᱽᱨᱟ",
+        "loading": "ᱞᱚᱰ ᱦᱩᱭᱩᱜ ᱠᱟᱱᱟ...",
+        "error": "ᱵᱷᱩᱞ",
+        "success": "ᱥᱩᱯᱷᱚᱞ",
+        "yes": "ᱦᱚᱭ",
+        "no": "ᱵᱟᱝ",
+        "back": "ᱛᱟᱭᱚᱢ",
+        "next": "ᱱᱮᱛᱟᱨ",
+        "close": "ᱵᱚᱸᱫᱚ",
+        "confirm": "ᱯᱟᱠᱟ",
+        "required": "ᱞᱟᱹᱠᱛᱤ",
+        "selectLanguage": "ᱯᱟᱹᱨᱥᱤ ᱵᱟᱪᱷᱟᱣ",
+        "welcome": "ᱥᱟᱹᱜᱩᱱ"
+    },
+    "navbar": {
+        "home": "ᱚᱲᱟᱜ",
+        "victimPortal": "ᱡᱚᱜᱟᱣ ᱠᱟᱱ ᱯᱚᱨᱴᱟᱞ",
+        "officerPortal": "ᱚᱯᱷᱤᱥᱟᱨ ᱯᱚᱨᱴᱟᱞ",
+        "emergencyFund": "ᱱᱟᱜᱮᱡ ᱯᱷᱟᱱᱰ",
+        "transparencyHub": "ᱡᱟᱦᱮᱨ ᱥᱮᱱᱴᱟᱨ",
+        "justiceWithDignity": "ᱢᱟᱸᱱ ᱥᱟᱶ ᱱᱮᱭᱟᱣ",
+        "welcomeUser": "ᱥᱟᱹᱜᱩᱱ, {{name}}"
+    },
+    "hero": {
+        "badge": "ᱨᱟᱠᱷᱟ • ᱡᱟᱦᱮᱨ • ᱦᱟᱯᱟᱸ",
+        "title": "ᱢᱟᱸᱱ ᱥᱟᱶ ᱱᱮᱭᱟᱣ:",
+        "subtitle": "ᱥᱤᱫᱷᱟ ᱯᱷᱟᱭᱫᱟ ᱴᱨᱟᱱᱥᱯᱷᱟᱨ",
+        "description": "PCR/PoA ᱟᱤᱱ ᱛᱟᱞᱟ ᱡᱚᱜᱟᱣ ᱠᱟᱱ ᱠᱚᱜ ᱡᱟᱦᱮᱨ, ᱵᱞᱚᱠᱪᱮᱱ ᱥᱟᱶ ᱦᱟᱯᱟᱸ ᱜᱚᱲᱚ।",
+        "applyForRelief": "ᱜᱚᱲᱚ ᱞᱟᱹᱜᱤᱫ ᱟᱯᱞᱟᱭ",
+        "viewTransparencyHub": "ᱡᱟᱦᱮᱨ ᱥᱮᱱᱴᱟᱨ ᱧᱮᱞ"
+    },
+    "portals": {
+        "selectYourPortal": "ᱟᱢᱟᱜ ᱯᱚᱨᱴᱟᱞ ᱵᱟᱪᱷᱟᱣ",
+        "accessPortal": "ᱯᱚᱨᱴᱟᱞ ᱮᱠᱥᱮᱥ",
+        "victimPortal": {
+            "title": "ᱡᱚᱜᱟᱣ ᱠᱟᱱ ᱯᱚᱨᱴᱟᱞ",
+            "description": "ᱨᱮᱡᱤᱥᱴᱟᱨ, ᱯᱷᱟᱱᱰ ᱴᱨᱮᱠ ᱟᱨ ᱱᱟᱜᱮᱡ ᱜᱚᱲᱚ ᱧᱟᱢ।"
+        },
+        "officerPortal": {
+            "title": "ᱚᱯᱷᱤᱥᱟᱨ ᱯᱚᱨᱴᱟᱞ",
+            "description": "ᱠᱮᱥ ᱵᱮᱨᱤᱯᱷᱟᱭ, ᱯᱷᱟᱱᱰ ᱢᱟᱸᱡᱩᱨ।"
+        },
+        "emergencyFund": {
+            "title": "ᱱᱟᱜᱮᱡ ᱯᱷᱟᱱᱰ",
+            "description": "ᱦᱮᱡ ᱚᱠᱛᱚ ᱜᱚᱲᱚ ᱞᱟᱹᱜᱤᱫ ᱟᱯᱞᱟᱭ।"
+        }
+    },
+    "login": {
+        "title": "NyayaSetu ᱨᱮ ᱞᱚᱜᱤᱱ",
+        "selectRole": "ᱥᱟᱢᱟᱝ ᱥᱮᱱ ᱞᱟᱹᱜᱤᱫ ᱟᱢᱟᱜ ᱠᱟᱹᱢᱤ ᱵᱟᱪᱷᱟᱣ",
+        "victim": "ᱡᱚᱜᱟᱣ ᱠᱟᱱ",
+        "officer": "ᱚᱯᱷᱤᱥᱟᱨ",
+        "email": "ᱤᱢᱮᱞ ᱴᱷᱤᱠᱟᱱᱟ",
+        "password": "ᱯᱟᱥᱣᱟᱨᱰ",
+        "loginButton": "ᱞᱚᱜᱤᱱ"
+    },
+    "victimPortal": {
+        "title": "ᱡᱚᱜᱟᱣ ᱠᱟᱱ ᱯᱚᱨᱴᱟᱞ",
+        "newApplication": "ᱱᱟᱣᱟ ᱟᱯᱞᱤᱠᱮᱥᱚᱱ",
+        "trackStatus": "ᱥᱴᱮᱴᱟᱥ ᱴᱨᱮᱠ",
+        "form": {
+            "fullName": "ᱯᱩᱨᱟᱣ ᱧᱩᱛᱩᱢ",
+            "fatherName": "ᱟᱯᱟ ᱧᱩᱛᱩᱢ",
+            "mobile": "ᱢᱚᱵᱟᱤᱞ ᱱᱚᱢᱵᱚᱨ",
+            "email": "ᱤᱢᱮᱞ",
+            "aadhaar": "ᱟᱫᱷᱟᱨ ᱱᱚᱢᱵᱚᱨ",
+            "address": "ᱴᱷᱤᱠᱟᱱᱟ",
+            "district": "ᱡᱤᱞᱟ",
+            "state": "ᱨᱟᱡᱽ"
+        }
+    },
+    "officerPortal": {
+        "title": "ᱚᱯᱷᱤᱥᱟᱨ ᱯᱚᱨᱴᱟᱞ",
+        "dashboard": "ᱰᱮᱥᱵᱚᱨᱰ",
+        "pendingCases": "ᱯᱮᱱᱰᱤᱝ ᱠᱮᱥ",
+        "approvedCases": "ᱢᱟᱸᱡᱩᱨ ᱠᱮᱥ",
+        "approve": "ᱢᱟᱸᱡᱩᱨ",
+        "reject": "ᱵᱟᱹᱫ"
+    },
+    "footer": {
+        "about": "NyayaSetu ᱵᱟᱵᱚᱫ ᱨᱮ",
+        "quickLinks": "ᱦᱟᱯᱟᱸ ᱞᱤᱝᱠ",
+        "contact": "ᱥᱟᱹᱜᱟᱹᱭ",
+        "copyright": "© {{year}} NyayaSetu. ᱡᱚᱛᱚ ᱦᱟᱹᱠ ᱨᱟᱠᱷᱟ।"
+    },
+    "errors": {
+        "required": "ᱱᱚᱶᱟ ᱯᱷᱤᱞᱰ ᱞᱟᱹᱠᱛᱤ",
+        "invalidEmail": "ᱫᱟᱭᱟ ᱠᱟᱛᱮ ᱵᱟᱝ ᱵᱷᱩᱞ ᱤᱢᱮᱞ ᱴᱷᱤᱠᱟᱱᱟ ᱮᱢ"
+    }
+}

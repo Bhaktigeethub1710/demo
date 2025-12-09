@@ -1,0 +1,101 @@
+{
+    "common": {
+        "login": "लग इन",
+        "logout": "लग आउट",
+        "home": "गृहपृष्ठ",
+        "submit": "पेश गर्नुहोस्",
+        "cancel": "रद्द गर्नुहोस्",
+        "save": "सुरक्षित गर्नुहोस्",
+        "view": "हेर्नुहोस्",
+        "download": "डाउनलोड",
+        "upload": "अपलोड",
+        "search": "खोज्नुहोस्",
+        "loading": "लोड हुँदैछ...",
+        "error": "त्रुटि",
+        "success": "सफलता",
+        "yes": "हो",
+        "no": "होइन",
+        "back": "पछाडि",
+        "next": "अर्को",
+        "close": "बन्द गर्नुहोस्",
+        "confirm": "पुष्टि गर्नुहोस्",
+        "required": "आवश्यक",
+        "selectLanguage": "भाषा छान्नुहोस्",
+        "welcome": "स्वागत छ"
+    },
+    "navbar": {
+        "home": "गृहपृष्ठ",
+        "victimPortal": "पीडित पोर्टल",
+        "officerPortal": "अधिकारी पोर्टल",
+        "emergencyFund": "आपतकालीन कोष",
+        "transparencyHub": "पारदर्शिता केन्द्र",
+        "justiceWithDignity": "मर्यादासहित न्याय",
+        "welcomeUser": "स्वागत छ, {{name}}"
+    },
+    "hero": {
+        "badge": "सुरक्षित • पारदर्शी • छिटो",
+        "title": "मर्यादासहित न्याय:",
+        "subtitle": "प्रत्यक्ष लाभ हस्तान्तरण",
+        "description": "PCR/PoA ऐनअन्तर्गत पीडितहरूलाई पारदर्शी, ब्लकचेन-समर्थित प्रणालीमार्फत छिटो राहत।",
+        "applyForRelief": "राहतको लागि आवेदन दिनुहोस्",
+        "viewTransparencyHub": "पारदर्शिता केन्द्र हेर्नुहोस्"
+    },
+    "portals": {
+        "selectYourPortal": "आफ्नो पोर्टल छान्नुहोस्",
+        "accessPortal": "पोर्टल पहुँच",
+        "victimPortal": {
+            "title": "पीडित पोर्टल",
+            "description": "दर्ता गर्नुहोस्, कोष ट्र्याक गर्नुहोस् र आपतकालीन राहत पाउनुहोस्।"
+        },
+        "officerPortal": {
+            "title": "अधिकारी पोर्टल",
+            "description": "मुद्दाहरू प्रमाणित गर्नुहोस्, कोष स्वीकृत गर्नुहोस्।"
+        },
+        "emergencyFund": {
+            "title": "आपतकालीन कोष",
+            "description": "तत्काल आर्थिक सहायताको लागि आवेदन दिनुहोस्।"
+        }
+    },
+    "login": {
+        "title": "NyayaSetu मा लग इन गर्नुहोस्",
+        "selectRole": "जारी राख्न आफ्नो भूमिका छान्नुहोस्",
+        "victim": "पीडित",
+        "officer": "अधिकारी",
+        "email": "इमेल ठेगाना",
+        "password": "पासवर्ड",
+        "loginButton": "लग इन"
+    },
+    "victimPortal": {
+        "title": "पीडित पोर्टल",
+        "newApplication": "नयाँ आवेदन",
+        "trackStatus": "स्थिति ट्र्याक गर्नुहोस्",
+        "form": {
+            "fullName": "पूरा नाम",
+            "fatherName": "बुबाको नाम",
+            "mobile": "मोबाइल नम्बर",
+            "email": "इमेल",
+            "aadhaar": "आधार नम्बर",
+            "address": "ठेगाना",
+            "district": "जिल्ला",
+            "state": "राज्य"
+        }
+    },
+    "officerPortal": {
+        "title": "अधिकारी पोर्टल",
+        "dashboard": "ड्यासबोर्ड",
+        "pendingCases": "विचाराधीन मुद्दाहरू",
+        "approvedCases": "स्वीकृत मुद्दाहरू",
+        "approve": "स्वीकृत गर्नुहोस्",
+        "reject": "अस्वीकार गर्नुहोस्"
+    },
+    "footer": {
+        "about": "NyayaSetu बारेमा",
+        "quickLinks": "द्रुत लिङ्कहरू",
+        "contact": "सम्पर्क",
+        "copyright": "© {{year}} NyayaSetu. सर्वाधिकार सुरक्षित।"
+    },
+    "errors": {
+        "required": "यो क्षेत्र आवश्यक छ",
+        "invalidEmail": "कृपया मान्य इमेल ठेगाना प्रविष्ट गर्नुहोस्"
+    }
+}

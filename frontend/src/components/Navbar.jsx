@@ -1,16 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Shield, Globe, User, ChevronDown } from "lucide-react";
+import { Menu, X, Shield, User, ChevronDown } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { navigateToRoleTarget } from "@/utils/navigation";
 import { useToast } from "@/hooks/use-toast";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import LanguageSelector from "@/components/LanguageSelector";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,6 +16,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -57,22 +54,28 @@ const Navbar = () => {
 
   // Define navigation links based on login state
   const loggedOutNavLinks = [
-    { label: "Home", path: "/", type: "link" },
-    { label: "Victim Portal", path: "/victim-portal", type: "portal", role: "victim", handler: handleVictimPortalClick },
-    { label: "Officer Portal", path: "/officer-portal", type: "portal", role: "officer", handler: handleOfficerPortalClick },
-    { label: "Emergency fund", path: "/emergency-fund", type: "link" },
-    { label: "Transparency Hub", path: "/transparency", type: "link" },
+    { label: t('navbar.home'), path: "/", type: "link" },
+    { label: t('navbar.victimPortal'), path: "/victim-portal", type: "portal", role: "victim", handler: handleVictimPortalClick },
+    { label: t('navbar.officerPortal'), path: "/officer-portal", type: "portal", role: "officer", handler: handleOfficerPortalClick },
+    { label: t('navbar.emergencyFund'), path: "/emergency-fund", type: "link" },
+    { label: t('navbar.transparencyHub'), path: "/transparency", type: "link" },
     {
-      label: "PCR Act",
+      label: t('navbar.pcrAct'),
       path: "https://www.indiacode.nic.in/bitstream/123456789/15434/1/protection_of_civil_rights_act%2C_1955.pdf",
       type: "external",
       ariaLabel: "Open PCR Act (PDF) in new tab"
     },
     {
-      label: "POA Act",
+      label: t('navbar.poaAct'),
       path: "https://www.indiacode.nic.in/bitstream/123456789/15338/1/scheduled_castes_and_the_scheduled_tribes.pdf",
       type: "external",
       ariaLabel: "Open POA Act (PDF) in new tab"
+    },
+    {
+      label: t('navbar.pcrPoaRules'),
+      path: "https://drive.google.com/file/d/155Q8I2rCT5pvzfinzHHgG9kz5R0a2Zqe/view?usp=sharing",
+      type: "external",
+      ariaLabel: "Open PCR/POA Act Rules in new tab"
     },
   ];
 
@@ -104,8 +107,8 @@ const Navbar = () => {
               <Shield className="h-6 w-6 text-primary-foreground" />
             </div>
             <div className="hidden md:block">
-              <div className="text-sm font-semibold text-primary">Justice with Dignity</div>
-              <div className="text-xs text-muted-foreground">DBT for PCR/PoA Acts</div>
+              <div className="text-sm font-semibold text-primary">{t('navbar.justiceWithDignity')}</div>
+              <div className="text-xs text-muted-foreground">{t('navbar.dbtForPcrPoa')}</div>
             </div>
           </Link>
 
@@ -147,17 +150,7 @@ const Navbar = () => {
           {/* Right Side Actions */}
           <div className="flex items-center space-x-3">
             {/* Language Switcher */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="hidden md:flex">
-                  <Globe className="h-5 w-5" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem>English</DropdownMenuItem>
-                <DropdownMenuItem>हिंदी</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <LanguageSelector />
 
             {/* Login/User Dropdown */}
             {isAuthenticated ? (

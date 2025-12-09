@@ -65,6 +65,7 @@ app.use('/api/auth', require('./src/routes/auth'));
 app.use('/api/documents', require('./src/routes/documentRoutes'));
 app.use('/api/grievances', require('./src/routes/grievanceRoutes'));
 app.use('/api/tickets', require('./src/routes/grievanceTicketRoutes'));
+app.use('/api/intercaste', require('./src/routes/intercasteRoutes'));
 
 
 // TODO: Import and use additional routes

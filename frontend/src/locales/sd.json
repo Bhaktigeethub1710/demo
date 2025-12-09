@@ -1,0 +1,101 @@
+{
+    "common": {
+        "login": "لاگ ان",
+        "logout": "لاگ آئوٽ",
+        "home": "گھر",
+        "submit": "جمع ڪريو",
+        "cancel": "رد ڪريو",
+        "save": "محفوظ ڪريو",
+        "view": "ڏسو",
+        "download": "ڊائونلوڊ",
+        "upload": "اپلوڊ",
+        "search": "ڳولھيو",
+        "loading": "لوڊ ٿي رھيو آھي...",
+        "error": "غلطي",
+        "success": "ڪاميابي",
+        "yes": "ھا",
+        "no": "نه",
+        "back": "پوئتي",
+        "next": "اڳيان",
+        "close": "بند ڪريو",
+        "confirm": "تصديق ڪريو",
+        "required": "ضروري",
+        "selectLanguage": "ٻولي چونڊيو",
+        "welcome": "ڀلي ڪري آيا"
+    },
+    "navbar": {
+        "home": "گھر",
+        "victimPortal": "متاثر پورٽل",
+        "officerPortal": "آفيسر پورٽل",
+        "emergencyFund": "ايمرجنسي فنڊ",
+        "transparencyHub": "شفافيت مرڪز",
+        "justiceWithDignity": "عزت سان انصاف",
+        "welcomeUser": "ڀلي ڪري آيا، {{name}}"
+    },
+    "hero": {
+        "badge": "محفوظ • شفاف • تيز",
+        "title": "عزت سان انصاف:",
+        "subtitle": "سڌي فائدي جي منتقلي",
+        "description": "PCR/PoA قانونن تحت متاثرين کي شفاف، بلاڪچين سان ٺاھيل نظام ذريعي جلدي مدد.",
+        "applyForRelief": "مدد لاء درخواست ڏيو",
+        "viewTransparencyHub": "شفافيت مرڪز ڏسو"
+    },
+    "portals": {
+        "selectYourPortal": "پنھنجو پورٽل چونڊيو",
+        "accessPortal": "پورٽل تائين رسائي",
+        "victimPortal": {
+            "title": "متاثر پورٽل",
+            "description": "رجسٽر ڪريو، فنڊ ٽريڪ ڪريو ۽ ايمرجنسي مدد حاصل ڪريو."
+        },
+        "officerPortal": {
+            "title": "آفيسر پورٽل",
+            "description": "ڪيسز جي تصديق ڪريو، فنڊ منظور ڪريو."
+        },
+        "emergencyFund": {
+            "title": "ايمرجنسي فنڊ",
+            "description": "فوري مالي مدد لاء درخواست ڏيو."
+        }
+    },
+    "login": {
+        "title": "NyayaSetu ۾ لاگ ان ڪريو",
+        "selectRole": "اڳتي وڌڻ لاء پنھنجو ڪردار چونڊيو",
+        "victim": "متاثر",
+        "officer": "آفيسر",
+        "email": "اي ميل پتو",
+        "password": "پاسورڊ",
+        "loginButton": "لاگ ان"
+    },
+    "victimPortal": {
+        "title": "متاثر پورٽل",
+        "newApplication": "نئين درخواست",
+        "trackStatus": "حالت ٽريڪ ڪريو",
+        "form": {
+            "fullName": "پورو نالو",
+            "fatherName": "پيء جو نالو",
+            "mobile": "موبائل نمبر",
+            "email": "اي ميل",
+            "aadhaar": "آڌار نمبر",
+            "address": "پتو",
+            "district": "ضلعو",
+            "state": "رياست"
+        }
+    },
+    "officerPortal": {
+        "title": "آفيسر پورٽل",
+        "dashboard": "ڊيش بورڊ",
+        "pendingCases": "زير التوا ڪيس",
+        "approvedCases": "منظور ٿيل ڪيس",
+        "approve": "منظور ڪريو",
+        "reject": "رد ڪريو"
+    },
+    "footer": {
+        "about": "NyayaSetu بابت",
+        "quickLinks": "جلدي لنڪس",
+        "contact": "رابطو",
+        "copyright": "© {{year}} NyayaSetu. سڀ حق محفوظ."
+    },
+    "errors": {
+        "required": "ھي فيلڊ ضروري آھي",
+        "invalidEmail": "مھرباني ڪري صحيح اي ميل پتو داخل ڪريو"
+    }
+}

@@ -1,0 +1,101 @@
+{
+    "common": {
+        "login": "ଲଗଇନ",
+        "logout": "ଲଗ ଆଉଟ",
+        "home": "ହୋମ",
+        "submit": "ଦାଖଲ କରନ୍ତୁ",
+        "cancel": "ବାତିଲ",
+        "save": "ସଞ୍ଚୟ",
+        "view": "ଦେଖନ୍ତୁ",
+        "download": "ଡାଉନଲୋଡ",
+        "upload": "ଅପଲୋଡ",
+        "search": "ସନ୍ଧାନ",
+        "loading": "ଲୋଡ ହେଉଛି...",
+        "error": "ତ୍ରୁଟି",
+        "success": "ସଫଳତା",
+        "yes": "ହଁ",
+        "no": "ନା",
+        "back": "ପଛକୁ",
+        "next": "ପରବର୍ତ୍ତୀ",
+        "close": "ବନ୍ଦ",
+        "confirm": "ନିଶ୍ଚିତ",
+        "required": "ଆବଶ୍ୟକ",
+        "selectLanguage": "ଭାଷା ଚୟନ କରନ୍ତୁ",
+        "welcome": "ସ୍ୱାଗତ"
+    },
+    "navbar": {
+        "home": "ହୋମ",
+        "victimPortal": "ପୀଡ଼ିତ ପୋର୍ଟାଲ",
+        "officerPortal": "ଅଧିକାରୀ ପୋର୍ଟାଲ",
+        "emergencyFund": "ଜରୁରୀକାଳୀନ ପାଣ୍ଠି",
+        "transparencyHub": "ସ୍ୱଚ୍ଛତା କେନ୍ଦ୍ର",
+        "justiceWithDignity": "ମର୍ଯ୍ୟାଦା ସହ ନ୍ୟାୟ",
+        "welcomeUser": "ସ୍ୱାଗତ, {{name}}"
+    },
+    "hero": {
+        "badge": "ସୁରକ୍ଷିତ • ସ୍ୱଚ୍ଛ • ଦ୍ରୁତ",
+        "title": "ମର୍ଯ୍ୟାଦା ସହ ନ୍ୟାୟ:",
+        "subtitle": "ସିଧାସଳଖ ଲାଭ ସ୍ଥାନାନ୍ତର",
+        "description": "PCR/PoA ଆଇନ ଅଧୀନରେ ପୀଡ଼ିତମାନଙ୍କୁ ସ୍ୱଚ୍ଛ, ବ୍ଲକଚେନ-ସମର୍ଥିତ ସିଷ୍ଟମ ମାଧ୍ୟମରେ ଦ୍ରୁତ ସହାୟତା।",
+        "applyForRelief": "ସହାୟତା ପାଇଁ ଆବେଦନ",
+        "viewTransparencyHub": "ସ୍ୱଚ୍ଛତା କେନ୍ଦ୍ର ଦେଖନ୍ତୁ"
+    },
+    "portals": {
+        "selectYourPortal": "ଆପଣଙ୍କ ପୋର୍ଟାଲ ଚୟନ କରନ୍ତୁ",
+        "accessPortal": "ପୋର୍ଟାଲ ଆକ୍ସେସ",
+        "victimPortal": {
+            "title": "ପୀଡ଼ିତ ପୋର୍ଟାଲ",
+            "description": "ପଞ୍ଜିକରଣ କରନ୍ତୁ, ପାଣ୍ଠି ଟ୍ରାକ କରନ୍ତୁ ଏବଂ ଜରୁରୀକାଳୀନ ସହାୟତା ପାଆନ୍ତୁ।"
+        },
+        "officerPortal": {
+            "title": "ଅଧିକାରୀ ପୋର୍ଟାଲ",
+            "description": "ମାମଲା ଯାଞ୍ଚ କରନ୍ତୁ, ପାଣ୍ଠି ମଞ୍ଜୁର କରନ୍ତୁ।"
+        },
+        "emergencyFund": {
+            "title": "ଜରୁରୀକାଳୀନ ପାଣ୍ଠି",
+            "description": "ତୁରନ୍ତ ଆର୍ଥିକ ସହାୟତା ପାଇଁ ଆବେଦନ।"
+        }
+    },
+    "login": {
+        "title": "NyayaSetu ରେ ଲଗଇନ",
+        "selectRole": "ଜାରି ରଖିବାକୁ ଆପଣଙ୍କ ଭୂମିକା ଚୟନ କରନ୍ତୁ",
+        "victim": "ପୀଡ଼ିତ",
+        "officer": "ଅଧିକାରୀ",
+        "email": "ଇମେଲ ଠିକଣା",
+        "password": "ପାସୱାର୍ଡ",
+        "loginButton": "ଲଗଇନ"
+    },
+    "victimPortal": {
+        "title": "ପୀଡ଼ିତ ପୋର୍ଟାଲ",
+        "newApplication": "ନୂଆ ଆବେଦନ",
+        "trackStatus": "ସ୍ଥିତି ଟ୍ରାକ",
+        "form": {
+            "fullName": "ପୁରା ନାମ",
+            "fatherName": "ପିତାଙ୍କ ନାମ",
+            "mobile": "ମୋବାଇଲ ନମ୍ବର",
+            "email": "ଇମେଲ",
+            "aadhaar": "ଆଧାର ନମ୍ବର",
+            "address": "ଠିକଣା",
+            "district": "ଜିଲ୍ଲା",
+            "state": "ରାଜ୍ୟ"
+        }
+    },
+    "officerPortal": {
+        "title": "ଅଧିକାରୀ ପୋର୍ଟାଲ",
+        "dashboard": "ଡ୍ୟାସବୋର୍ଡ",
+        "pendingCases": "ବିଚାରାଧୀନ ମାମଲା",
+        "approvedCases": "ଅନୁମୋଦିତ ମାମଲା",
+        "approve": "ଅନୁମୋଦନ",
+        "reject": "ଖାରଜ"
+    },
+    "footer": {
+        "about": "NyayaSetu ବିଷୟରେ",
+        "quickLinks": "ଦ୍ରୁତ ଲିଙ୍କ",
+        "contact": "ଯୋଗାଯୋଗ",
+        "copyright": "© {{year}} NyayaSetu. ସମସ୍ତ ଅଧିକାର ସଂରକ୍ଷିତ।"
+    },
+    "errors": {
+        "required": "ଏହି କ୍ଷେତ୍ର ଆବଶ୍ୟକ",
+        "invalidEmail": "ଦୟାକରି ଏକ ବୈଧ ଇମେଲ ଠିକଣା ପ୍ରବେଶ କରନ୍ତୁ"
+    }
+}

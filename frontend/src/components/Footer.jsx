@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Shield, Mail, Phone, MapPin } from "lucide-react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { useAuth } from "@/contexts/AuthContext";
 import { navigateToRoleTarget } from "@/utils/navigation";
 import { useToast } from "@/hooks/use-toast";
@@ -15,6 +16,7 @@ const Footer = () => {
   const location = useLocation();
   const auth = useAuth();
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [isPrivacyPolicyOpen, setIsPrivacyPolicyOpen] = useState(false);
   const [isTermsOfServiceOpen, setIsTermsOfServiceOpen] = useState(false);
   const [isPcrPoaActsOpen, setIsPcrPoaActsOpen] = useState(false);
@@ -39,16 +41,16 @@ const Footer = () => {
             <div className="space-y-4">
               <div className="flex items-center space-x-2">
                 <Shield className="h-6 w-6" />
-                <span className="font-semibold">Justice with Dignity</span>
+                <span className="font-semibold">{t('navbar.justiceWithDignity')}</span>
               </div>
               <p className="text-sm text-primary-foreground/80">
-                Direct Benefit Transfer system ensuring swift relief to victims under PCR/PoA Acts.
+                {t('footer.aboutDesc')}
               </p>
             </div>
 
             {/* Quick Links */}
             <div>
-              <h3 className="font-semibold mb-4">Quick Links</h3>
+              <h3 className="font-semibold mb-4">{t('footer.quickLinks')}</h3>
               <ul className="space-y-2 text-sm">
                 <li>
                   <a
@@ -56,7 +58,7 @@ const Footer = () => {
                     onClick={handleVictimPortalClick}
                     className="hover:underline cursor-pointer"
                   >
-                    Victim Portal
+                    {t('navbar.victimPortal')}
                   </a>
                 </li>
                 <li>
@@ -65,17 +67,17 @@ const Footer = () => {
                     onClick={handleOfficerPortalClick}
                     className="hover:underline cursor-pointer"
                   >
-                    Officer Portal
+                    {t('navbar.officerPortal')}
                   </a>
                 </li>
-                <li><Link to="/transparency" className="hover:underline">Transparency Hub</Link></li>
-                <li><Link to="/grievances" className="hover:underline">File Grievance</Link></li>
+                <li><Link to="/transparency" className="hover:underline">{t('navbar.transparencyHub')}</Link></li>
+                <li><Link to="/grievances" className="hover:underline">{t('cta.fileGrievance')}</Link></li>
               </ul>
             </div>
 
             {/* Legal */}
             <div>
-              <h3 className="font-semibold mb-4">Legal</h3>
+              <h3 className="font-semibold mb-4">{t('footer.legal')}</h3>
               <ul className="space-y-2 text-sm">
                 <li>
                   <a
@@ -86,7 +88,7 @@ const Footer = () => {
                     }}
                     className="hover:underline cursor-pointer"
                   >
-                    Privacy Policy
+                    {t('footer.privacyPolicy')}
                   </a>
                 </li>
                 <li>
@@ -98,7 +100,7 @@ const Footer = () => {
                     }}
                     className="hover:underline cursor-pointer"
                   >
-                    Terms of Service
+                    {t('footer.termsOfService')}
                   </a>
                 </li>
                 <li>
@@ -130,7 +132,7 @@ const Footer = () => {
 
             {/* Contact */}
             <div>
-              <h3 className="font-semibold mb-4">Contact</h3>
+              <h3 className="font-semibold mb-4">{t('footer.contact')}</h3>
               <ul className="space-y-3 text-sm">
                 <li className="flex items-center space-x-2">
                   <Phone className="h-4 w-4" />
@@ -149,9 +151,9 @@ const Footer = () => {
           </div>
 
           <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center text-sm">
-            <p>&copy; 2025 Government of India. All rights reserved.</p>
+            <p>{t('footer.copyright', { year: new Date().getFullYear() })}</p>
             <p className="mt-2 text-primary-foreground/80">
-              Powered by National Informatics Centre
+              {t('footer.govtOfIndia')}
             </p>
           </div>
         </div>

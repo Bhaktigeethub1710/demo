@@ -1,0 +1,101 @@
+{
+    "common": {
+        "login": "लॉगिन",
+        "logout": "लॉग आउट",
+        "home": "होम",
+        "submit": "जमा करू",
+        "cancel": "रद्द करू",
+        "save": "सहेजू",
+        "view": "देखू",
+        "download": "डाउनलोड",
+        "upload": "अपलोड",
+        "search": "खोजू",
+        "loading": "लोड भऽ रहल अछि...",
+        "error": "गलती",
+        "success": "सफलता",
+        "yes": "हँ",
+        "no": "नहि",
+        "back": "पाछाँ",
+        "next": "आगाँ",
+        "close": "बंद करू",
+        "confirm": "पुष्टि करू",
+        "required": "जरूरी",
+        "selectLanguage": "भाषा चुनू",
+        "welcome": "स्वागत अछि"
+    },
+    "navbar": {
+        "home": "होम",
+        "victimPortal": "पीड़ित पोर्टल",
+        "officerPortal": "अधिकारी पोर्टल",
+        "emergencyFund": "आपातकालीन निधि",
+        "transparencyHub": "पारदर्शिता केंद्र",
+        "justiceWithDignity": "सम्मान सँ न्याय",
+        "welcomeUser": "स्वागत अछि, {{name}}"
+    },
+    "hero": {
+        "badge": "सुरक्षित • पारदर्शी • तेज",
+        "title": "सम्मान सँ न्याय:",
+        "subtitle": "सीधा लाभ हस्तांतरण",
+        "description": "PCR/PoA कानून अंतर्गत पीड़ित कें पारदर्शी, ब्लॉकचेन-समर्थित प्रणाली सँ तेज सहायता।",
+        "applyForRelief": "सहायता लेल आवेदन करू",
+        "viewTransparencyHub": "पारदर्शिता केंद्र देखू"
+    },
+    "portals": {
+        "selectYourPortal": "अपन पोर्टल चुनू",
+        "accessPortal": "पोर्टल एक्सेस करू",
+        "victimPortal": {
+            "title": "पीड़ित पोर्टल",
+            "description": "पंजीकरण करू, निधि ट्रैक करू आ आपातकालीन सहायता प्राप्त करू।"
+        },
+        "officerPortal": {
+            "title": "अधिकारी पोर्टल",
+            "description": "मामला सत्यापित करू, निधि स्वीकृत करू।"
+        },
+        "emergencyFund": {
+            "title": "आपातकालीन निधि",
+            "description": "तत्काल आर्थिक सहायता लेल आवेदन करू।"
+        }
+    },
+    "login": {
+        "title": "NyayaSetu मे लॉगिन करू",
+        "selectRole": "आगाँ बढ़बाक लेल अपन भूमिका चुनू",
+        "victim": "पीड़ित",
+        "officer": "अधिकारी",
+        "email": "ईमेल पता",
+        "password": "पासवर्ड",
+        "loginButton": "लॉगिन"
+    },
+    "victimPortal": {
+        "title": "पीड़ित पोर्टल",
+        "newApplication": "नव आवेदन",
+        "trackStatus": "स्थिति ट्रैक करू",
+        "form": {
+            "fullName": "पूरा नाम",
+            "fatherName": "पिताक नाम",
+            "mobile": "मोबाइल नंबर",
+            "email": "ईमेल",
+            "aadhaar": "आधार नंबर",
+            "address": "पता",
+            "district": "जिला",
+            "state": "राज्य"
+        }
+    },
+    "officerPortal": {
+        "title": "अधिकारी पोर्टल",
+        "dashboard": "डैशबोर्ड",
+        "pendingCases": "लंबित मामला",
+        "approvedCases": "स्वीकृत मामला",
+        "approve": "स्वीकृत करू",
+        "reject": "अस्वीकार करू"
+    },
+    "footer": {
+        "about": "NyayaSetu बारे मे",
+        "quickLinks": "त्वरित लिंक",
+        "contact": "संपर्क",
+        "copyright": "© {{year}} NyayaSetu. सभ अधिकार सुरक्षित।"
+    },
+    "errors": {
+        "required": "ई फील्ड जरूरी अछि",
+        "invalidEmail": "कृपया वैध ईमेल पता दर्ज करू"
+    }
+}

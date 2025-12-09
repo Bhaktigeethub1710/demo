@@ -1,0 +1,101 @@
+{
+    "common": {
+        "login": "লগ ইন",
+        "logout": "লগ আউট",
+        "home": "হোম",
+        "submit": "থীংগৎপা",
+        "cancel": "নত্তনা লৌশিনবা",
+        "save": "সেব শিনবা",
+        "view": "য়েংবা",
+        "download": "ডাউনলোড",
+        "upload": "অপলোড",
+        "search": "থীদোকপা",
+        "loading": "লোড তৌরি...",
+        "error": "অফবা",
+        "success": "পাংথোকপা",
+        "yes": "হোই",
+        "no": "ন",
+        "back": "অহান্বদা",
+        "next": "মথং",
+        "close": "থীংবা",
+        "confirm": "কন্ফর্ম তৌবা",
+        "required": "মথৌ তাবা",
+        "selectLanguage": "লোন খনবীয়ু",
+        "welcome": "ওকচর"
+    },
+    "navbar": {
+        "home": "হোম",
+        "victimPortal": "অৱাবা মী পোর্তল",
+        "officerPortal": "অধিকারী পোর্তল",
+        "emergencyFund": "মরুওইবা শেলমীৎ",
+        "transparencyHub": "অচৌবা তিলকল্লোন",
+        "justiceWithDignity": "অৱাং য়াউহনবি ন্যায়",
+        "welcomeUser": "ওকচর, {{name}}"
+    },
+    "hero": {
+        "badge": "ফজরবা • তিলকল্লোন • য়াম্লদুনা",
+        "title": "অৱাং য়াউহনবি ন্যায়:",
+        "subtitle": "অকোন্বু সরুক পীবা",
+        "description": "PCR/PoA আইনগী মখাদা অৱাবা মীসিংবু তিলকল্লোন, ব্লকচেন-মতেংনা য়াম্লদুনা মতেং পাংবা।",
+        "applyForRelief": "মতেংগীদমক্তা অপ্লাই তৌবীয়ু",
+        "viewTransparencyHub": "তিলকল্লোন সেন্তর য়েংবীয়ু"
+    },
+    "portals": {
+        "selectYourPortal": "নহাক্কী পোর্তল খনবীয়ু",
+        "accessPortal": "পোর্তল শীজিন্নবা",
+        "victimPortal": {
+            "title": "অৱাবা মী পোর্তল",
+            "description": "রেজিস্তর তৌবীয়ু, ফন্ড ত্রেক তৌবীয়ু অমসুং মরুওইবা মতেং ফংবীয়ু।"
+        },
+        "officerPortal": {
+            "title": "অধিকারী পোর্তল",
+            "description": "কেস ভেরিফাই তৌবীয়ু, ফন্ড সাংকশন তৌবীয়ু।"
+        },
+        "emergencyFund": {
+            "title": "মরুওইবা শেলমীৎ",
+            "description": "হন্দক্তদা শেলমীৎ মতেংগীদমক্তা অপ্লাই তৌবীয়ু।"
+        }
+    },
+    "login": {
+        "title": "NyayaSetu দা লগইন তৌবীয়ু",
+        "selectRole": "মথং ওইনা মীওই খনবীয়ু",
+        "victim": "অৱাবা মী",
+        "officer": "অধিকারী",
+        "email": "ইমেল এদ্রেস",
+        "password": "পাসৱার্দ",
+        "loginButton": "লগ ইন"
+    },
+    "victimPortal": {
+        "title": "অৱাবা মী পোর্তল",
+        "newApplication": "অনৌবা এপ্লিকেশন",
+        "trackStatus": "স্তেতস ত্রেক",
+        "form": {
+            "fullName": "মতৌ মিং",
+            "fatherName": "ইপাগী মিং",
+            "mobile": "মোবাইল নম্বর",
+            "email": "ইমেল",
+            "aadhaar": "আধার নম্বর",
+            "address": "এদ্রেস",
+            "district": "দিস্ত্রিক্ত",
+            "state": "রাজ্য"
+        }
+    },
+    "officerPortal": {
+        "title": "অধিকারী পোর্তল",
+        "dashboard": "দ্যাশবোর্দ",
+        "pendingCases": "পেন্দিং কেস",
+        "approvedCases": "এপ্রুভদ কেস",
+        "approve": "এপ্রুভ",
+        "reject": "রিজেক্ত"
+    },
+    "footer": {
+        "about": "NyayaSetu গী মতাংদা",
+        "quickLinks": "য়াম্লদুনা লিঙ্কসিং",
+        "contact": "কন্তেক্ত",
+        "copyright": "© {{year}} NyayaSetu. অপুম্বা হক্সিং থিংবা।"
+    },
+    "errors": {
+        "required": "অসি ফীল্দ মথৌ তাই",
+        "invalidEmail": "চাউবীদুনা ভ্যালিদ ইমেল এদ্রেস পীবীয়ু"
+    }
+}

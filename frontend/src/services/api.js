@@ -113,6 +113,21 @@ export const documentAPI = {
         return response.data;
     },
 
+    // Verify document type (pre-submission check - before form is submitted)
+    verifyType: async (file, expectedDocumentType) => {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('expectedDocumentType', expectedDocumentType);
+
+        const response = await axios.post(`${API_BASE_URL}/documents/verify`, formData, {
+            headers: {
+                'Authorization': `Bearer ${getToken()}`,
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        return response.data;
+    },
+
     // Get documents by grievance ID
     getByGrievance: async (grievanceId) => {
         const response = await apiClient.get(`/documents/grievance/${grievanceId}`);
@@ -224,10 +239,19 @@ export const ticketAPI = {
     }
 };
 
+// Intercaste Marriage API
+export const intercasteAPI = {
+    // Create new intercaste marriage application
+    create: async (data) => {
+        const response = await apiClient.post('/intercaste/create', data);
+        return response.data;
+    }
+};
+
 export default {
     grievanceAPI,
     documentAPI,
     authAPI,
-    ticketAPI
+    ticketAPI,
+    intercasteAPI
 };
-

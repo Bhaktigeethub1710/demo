@@ -1,0 +1,101 @@
+{
+    "common": {
+        "login": "लॉगिन",
+        "logout": "लॉग आउट",
+        "home": "होम",
+        "submit": "सादर करात",
+        "cancel": "रद्द करात",
+        "save": "जतन करात",
+        "view": "पळयात",
+        "download": "डाउनलोड",
+        "upload": "अपलोड",
+        "search": "सोदात",
+        "loading": "लोड जाता...",
+        "error": "चूक",
+        "success": "यश",
+        "yes": "हय",
+        "no": "ना",
+        "back": "फाटी",
+        "next": "फुडें",
+        "close": "बंद करात",
+        "confirm": "निश्चीत करात",
+        "required": "गरजेचें",
+        "selectLanguage": "भास निवडात",
+        "welcome": "येवकार"
+    },
+    "navbar": {
+        "home": "होम",
+        "victimPortal": "पीडित पोर्टल",
+        "officerPortal": "अधिकारी पोर्टल",
+        "emergencyFund": "आपत्कालीन निधी",
+        "transparencyHub": "पारदर्शकता केंद्र",
+        "justiceWithDignity": "मानान न्याय",
+        "welcomeUser": "येवकार, {{name}}"
+    },
+    "hero": {
+        "badge": "सुरक्षित • पारदर्शक • वेगवान",
+        "title": "मानान न्याय:",
+        "subtitle": "थेट लाभ हस्तांतरण",
+        "description": "PCR/PoA कायद्याखाला पीडितांक पारदर्शक, ब्लॉकचेन-समर्थित यंत्रणेन वेगवान मदत.",
+        "applyForRelief": "मदतीखातीर अर्ज करात",
+        "viewTransparencyHub": "पारदर्शकता केंद्र पळयात"
+    },
+    "portals": {
+        "selectYourPortal": "तुमचें पोर्टल निवडात",
+        "accessPortal": "पोर्टल प्रवेश",
+        "victimPortal": {
+            "title": "पीडित पोर्टल",
+            "description": "नोंदणी करात, निधी ट्रॅक करात आनी आपत्कालीन मदत मेळयात."
+        },
+        "officerPortal": {
+            "title": "अधिकारी पोर्टल",
+            "description": "प्रकरणां तपासात, निधी मंजूर करात."
+        },
+        "emergencyFund": {
+            "title": "आपत्कालीन निधी",
+            "description": "तात्काळ आर्थिक मदतीखातीर अर्ज करात."
+        }
+    },
+    "login": {
+        "title": "NyayaSetu वरी लॉगिन करात",
+        "selectRole": "फुडें वचपाक तुमची भुमिका निवडात",
+        "victim": "पीडित",
+        "officer": "अधिकारी",
+        "email": "ईमेल पत्तो",
+        "password": "पासवर्ड",
+        "loginButton": "लॉगिन"
+    },
+    "victimPortal": {
+        "title": "पीडित पोर्टल",
+        "newApplication": "नवो अर्ज",
+        "trackStatus": "स्थिती ट्रॅक करात",
+        "form": {
+            "fullName": "पुराय नांव",
+            "fatherName": "बापायचें नांव",
+            "mobile": "मोबायल नंबर",
+            "email": "ईमेल",
+            "aadhaar": "आधार नंबर",
+            "address": "पत्तो",
+            "district": "जिल्हो",
+            "state": "राज्य"
+        }
+    },
+    "officerPortal": {
+        "title": "अधिकारी पोर्टल",
+        "dashboard": "डॅशबोर्ड",
+        "pendingCases": "प्रलंबित प्रकरणां",
+        "approvedCases": "मंजूर प्रकरणां",
+        "approve": "मंजूर करात",
+        "reject": "नाकारात"
+    },
+    "footer": {
+        "about": "NyayaSetu विशीं",
+        "quickLinks": "वेगवान दुवे",
+        "contact": "संपर्क",
+        "copyright": "© {{year}} NyayaSetu. सगळे हक्क राखीव."
+    },
+    "errors": {
+        "required": "हें क्षेत्र गरजेचें आसा",
+        "invalidEmail": "उपकार करून वैध ईमेल पत्तो घालात"
+    }
+}

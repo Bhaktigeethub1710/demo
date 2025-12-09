@@ -1,0 +1,132 @@
+{
+    "common": {
+        "login": "लॉगिन",
+        "logout": "लॉग आउट",
+        "home": "मुख्यपृष्ठ",
+        "submit": "सादर करा",
+        "cancel": "रद्द करा",
+        "save": "जतन करा",
+        "view": "पहा",
+        "download": "डाउनलोड",
+        "upload": "अपलोड",
+        "search": "शोधा",
+        "loading": "लोड होत आहे...",
+        "error": "त्रुटी",
+        "success": "यशस्वी",
+        "yes": "होय",
+        "no": "नाही",
+        "back": "मागे",
+        "next": "पुढे",
+        "close": "बंद करा",
+        "confirm": "पुष्टी करा",
+        "required": "आवश्यक",
+        "selectLanguage": "भाषा निवडा",
+        "welcome": "स्वागत आहे"
+    },
+    "navbar": {
+        "home": "मुख्यपृष्ठ",
+        "victimPortal": "पीडित पोर्टल",
+        "officerPortal": "अधिकारी पोर्टल",
+        "emergencyFund": "आपत्कालीन निधी",
+        "transparencyHub": "पारदर्शकता केंद्र",
+        "justiceWithDignity": "प्रतिष्ठेसह न्याय",
+        "welcomeUser": "स्वागत आहे, {{name}}"
+    },
+    "hero": {
+        "badge": "सुरक्षित • पारदर्शक • जलद",
+        "title": "प्रतिष्ठेसह न्याय:",
+        "subtitle": "थेट लाभ हस्तांतरण",
+        "description": "PCR/PoA कायद्यांतर्गत पीडितांना पारदर्शक, ब्लॉकचेन-समर्थित प्रणालीद्वारे जलद मदत.",
+        "applyForRelief": "मदतीसाठी अर्ज करा",
+        "viewTransparencyHub": "पारदर्शकता केंद्र पहा"
+    },
+    "portals": {
+        "selectYourPortal": "तुमचे पोर्टल निवडा",
+        "accessPortal": "पोर्टल ऍक्सेस करा",
+        "victimPortal": {
+            "title": "पीडित पोर्टल",
+            "description": "नोंदणी करा, निधी ट्रॅक करा आणि आपत्कालीन मदत मिळवा."
+        },
+        "officerPortal": {
+            "title": "अधिकारी पोर्टल",
+            "description": "प्रकरणे पडताळा, निधी मंजूर करा."
+        },
+        "emergencyFund": {
+            "title": "आपत्कालीन निधी",
+            "description": "तात्काळ आर्थिक मदतीसाठी अर्ज करा."
+        }
+    },
+    "howToApply": {
+        "title": "सोप्या चरणांमध्ये मदतीसाठी अर्ज करा",
+        "step1": {
+            "title": "तपशील प्रविष्ट करा",
+            "description": "तुमचा केस आयडी किंवा आधार क्रमांक द्या"
+        },
+        "step2": {
+            "title": "कागदपत्रे अपलोड करा",
+            "description": "DigiLocker किंवा मॅन्युअल अपलोडद्वारे कागदपत्रे सादर करा"
+        },
+        "step3": {
+            "title": "AI पडताळणी",
+            "description": "स्वयंचलित पडताळणी तुमचे प्रकरण क्रॉस-चेक करते"
+        },
+        "step4": {
+            "title": "मदत मिळवा",
+            "description": "48 तासांत मदत पुष्टी मिळवा"
+        },
+        "beginApplication": "तुमचा मदत अर्ज सुरू करा"
+    },
+    "features": {
+        "title": "आमचे प्लॅटफॉर्म का निवडावे?",
+        "privacyFirst": {
+            "title": "गोपनीयता-प्रथम डिझाइन",
+            "description": "पीडितांना केस आयडीने ओळखले जाते."
+        },
+        "emergencyRelief": {
+            "title": "48-तास आपत्कालीन मदत",
+            "description": "गंभीर परिस्थितीत तात्काळ वितरण."
+        }
+    },
+    "login": {
+        "title": "NyayaSetu मध्ये लॉगिन करा",
+        "selectRole": "पुढे जाण्यासाठी तुमची भूमिका निवडा",
+        "victim": "पीडित",
+        "officer": "अधिकारी",
+        "email": "ईमेल पत्ता",
+        "password": "पासवर्ड",
+        "loginButton": "लॉगिन"
+    },
+    "victimPortal": {
+        "title": "पीडित पोर्टल",
+        "newApplication": "नवीन अर्ज",
+        "trackStatus": "स्थिती ट्रॅक करा",
+        "form": {
+            "fullName": "पूर्ण नाव",
+            "fatherName": "वडिलांचे नाव",
+            "mobile": "मोबाइल क्रमांक",
+            "email": "ईमेल",
+            "aadhaar": "आधार क्रमांक",
+            "address": "पत्ता",
+            "district": "जिल्हा",
+            "state": "राज्य"
+        }
+    },
+    "officerPortal": {
+        "title": "अधिकारी पोर्टल",
+        "dashboard": "डॅशबोर्ड",
+        "pendingCases": "प्रलंबित प्रकरणे",
+        "approvedCases": "मंजूर प्रकरणे",
+        "approve": "मंजूर करा",
+        "reject": "नाकारा"
+    },
+    "footer": {
+        "about": "NyayaSetu बद्दल",
+        "quickLinks": "जलद दुवे",
+        "contact": "संपर्क",
+        "copyright": "© {{year}} NyayaSetu. सर्व हक्क राखीव."
+    },
+    "errors": {
+        "required": "हे फील्ड आवश्यक आहे",
+        "invalidEmail": "कृपया वैध ईमेल पत्ता प्रविष्ट करा"
+    }
+}

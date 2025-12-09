@@ -7,35 +7,62 @@ const grievanceSchema = new mongoose.Schema({
         required: true,
         index: true
     },
+    // Case Type: atrocity (normal) or intercaste (intercaste marriage)
+    caseType: {
+        type: String,
+        enum: ['atrocity', 'intercaste'],
+        default: 'atrocity',
+        index: true
+    },
     // Unique Case ID for tracking
+    // Format: DBT-YYYY-DISTRICT-XXX (atrocity) or IM-YYYY-DISTRICT-XXX (intercaste)
     caseId: {
         type: String,
         required: true,
         unique: true,
         index: true
     },
-    // Personal Information
+    // Personal Information (for atrocity)
     aadhaarNumber: {
         type: String,
-        required: true
+        required: function () { return this.caseType === 'atrocity'; }
     },
     mobileNumber: {
         type: String,
-        required: true
+        required: function () { return this.caseType === 'atrocity'; }
     },
     email: {
         type: String
     },
-    // Case Details
+
+    // ============ INTERCASTE MARRIAGE SPECIFIC FIELDS ============
+    // Husband's Details
+    husbandName: { type: String },
+    husbandAadhaar: { type: String },
+    husbandMobile: { type: String },
+    husbandEmail: { type: String },
+    // Wife's Details
+    wifeName: { type: String },
+    wifeAadhaar: { type: String },
+    wifeMobile: { type: String },
+    wifeEmail: { type: String },
+    // SC/ST Spouse indicator
+    scstSpouse: {
+        type: String,
+        enum: ['husband', 'wife', null]
+    },
+    // Current Address (for intercaste)
+    currentAddress: { type: String },
+
+    // ============ ATROCITY CASE FIELDS (optional for intercaste) ============
+    // Case Details - Made optional for intercaste
     firCaseNumber: {
         type: String,
-        required: true,
-        unique: true,
+        sparse: true,
         index: true
     },
     policeStation: {
-        type: String,
-        required: true
+        type: String
     },
     district: {
         type: String,
@@ -46,8 +73,7 @@ const grievanceSchema = new mongoose.Schema({
         required: true
     },
     dateOfIncident: {
-        type: Date,
-        required: true
+        type: Date
     },
     dateOfFirRegistration: {
         type: Date

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useTranslation } from "react-i18next";
 import {
     Shield,
     Upload,
@@ -22,6 +23,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const EmergencyFund = () => {
     const { toast } = useToast();
+    const { t } = useTranslation();
 
     // Form state
     const [fullName, setFullName] = useState("");

@@ -1,0 +1,101 @@
+{
+    "common": {
+        "login": "لاگ اِن",
+        "logout": "لاگ آوٗٹ",
+        "home": "گَر",
+        "submit": "جَمٲع کَرِو",
+        "cancel": "مَنسوٗخ",
+        "save": "مَحفوٗظ کَرِو",
+        "view": "وُچھِو",
+        "download": "ڈاونلوڈ",
+        "upload": "اَپلوڈ",
+        "search": "لَبِو",
+        "loading": "لوڈ گژھان چُھ...",
+        "error": "غَلَط",
+        "success": "کامیاب",
+        "yes": "آہ",
+        "no": "نہٖ",
+        "back": "پَتٕتھ",
+        "next": "بیاکھ",
+        "close": "بَند کَرِو",
+        "confirm": "تَصدیٖق کَرِو",
+        "required": "ضَروٗری",
+        "selectLanguage": "زَبان چُنِو",
+        "welcome": "خوش آمَدید"
+    },
+    "navbar": {
+        "home": "گَر",
+        "victimPortal": "متاثِر پورٹَل",
+        "officerPortal": "اَفسَر پورٹَل",
+        "emergencyFund": "اِمَرجَنسی فَنڈ",
+        "transparencyHub": "شَفافِیَت مَرکَز",
+        "justiceWithDignity": "عِزَت سٕتؠ اِنصاف",
+        "welcomeUser": "خوش آمَدید، {{name}}"
+    },
+    "hero": {
+        "badge": "مَحفوٗظ • شَفاف • تیٖز",
+        "title": "عِزَت سٕتؠ اِنصاف:",
+        "subtitle": "براہ راست فایدٕ مُنتَقِلی",
+        "description": "PCR/PoA قانوٗنَن مُتابِق متاثِرِن ہَنٛز شَفاف، بلاکچَین سُپورٹ والٕی نِظام ذَرِیعٕ جَلد مَدَد۔",
+        "applyForRelief": "مَدَد ہَنٛز دَرخواست دِو",
+        "viewTransparencyHub": "شَفافِیَت مَرکَز وُچھِو"
+    },
+    "portals": {
+        "selectYourPortal": "پَنُن پورٹَل چُنِو",
+        "accessPortal": "پورٹَل رَسایی",
+        "victimPortal": {
+            "title": "متاثِر پورٹَل",
+            "description": "رَجِسٹَر کَرِو، فَنڈ ٹریک کَرِو تٕہ اِمَرجَنسی مَدَد حاصِل کَرِو۔"
+        },
+        "officerPortal": {
+            "title": "اَفسَر پورٹَل",
+            "description": "کیٖس تَصدیٖق کَرِو، فَنڈ مَنظوٗر کَرِو۔"
+        },
+        "emergencyFund": {
+            "title": "اِمَرجَنسی فَنڈ",
+            "description": "فوری مالی مَدَد ہَنٛز دَرخواست دِو۔"
+        }
+    },
+    "login": {
+        "title": "NyayaSetu مَنٛز لاگ اِن کَرِو",
+        "selectRole": "جاری رَکھَنَس پَنُن کِردار چُنِو",
+        "victim": "متاثِر",
+        "officer": "اَفسَر",
+        "email": "ای میل پَتٕہ",
+        "password": "پاسوَرڈ",
+        "loginButton": "لاگ اِن"
+    },
+    "victimPortal": {
+        "title": "متاثِر پورٹَل",
+        "newApplication": "نۄو دَرخواست",
+        "trackStatus": "حالَت ٹریک",
+        "form": {
+            "fullName": "پوٗر ناو",
+            "fatherName": "باب سُنٛد ناو",
+            "mobile": "موبایل نَمبَر",
+            "email": "ای میل",
+            "aadhaar": "آدھار نَمبَر",
+            "address": "پَتٕہ",
+            "district": "ضِلع",
+            "state": "ریاست"
+        }
+    },
+    "officerPortal": {
+        "title": "اَفسَر پورٹَل",
+        "dashboard": "ڈیش بورڈ",
+        "pendingCases": "زیر اِلتِوا کیٖس",
+        "approvedCases": "مَنظوٗر کیٖس",
+        "approve": "مَنظوٗر کَرِو",
+        "reject": "رَد کَرِو"
+    },
+    "footer": {
+        "about": "NyayaSetu بابَت",
+        "quickLinks": "جَلد لِنکس",
+        "contact": "رابِطہ",
+        "copyright": "© {{year}} NyayaSetu. تَمام حُقوٗق مَحفوٗظ۔"
+    },
+    "errors": {
+        "required": "یہٕ فیٖلڈ ضَروٗری چُھ",
+        "invalidEmail": "مِہربانی کَنٕہ درُست ای میل پَتٕہ لِیٖھِو"
+    }
+}

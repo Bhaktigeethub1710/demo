@@ -1,0 +1,101 @@
+{
+    "common": {
+        "login": "लॉगिन",
+        "logout": "लॉग आउट",
+        "home": "घर",
+        "submit": "जमा करो",
+        "cancel": "रद्द करो",
+        "save": "सांभो",
+        "view": "देखो",
+        "download": "डाउनलोड",
+        "upload": "अपलोड",
+        "search": "खोजो",
+        "loading": "लोड होई रहा है...",
+        "error": "गलती",
+        "success": "सफलता",
+        "yes": "हाँ",
+        "no": "नहीं",
+        "back": "पीछे",
+        "next": "अग्गे",
+        "close": "बंद करो",
+        "confirm": "पक्का करो",
+        "required": "जरूरी",
+        "selectLanguage": "बोली चुणो",
+        "welcome": "जी आया नूं"
+    },
+    "navbar": {
+        "home": "घर",
+        "victimPortal": "पीड़त पोर्टल",
+        "officerPortal": "अधिकारी पोर्टल",
+        "emergencyFund": "इमरजेंसी फंड",
+        "transparencyHub": "पारदर्शिता केंद्र",
+        "justiceWithDignity": "इज्जत कन्ने न्याय",
+        "welcomeUser": "जी आया नूं, {{name}}"
+    },
+    "hero": {
+        "badge": "सुरक्षित • पारदर्शी • तेज",
+        "title": "इज्जत कन्ने न्याय:",
+        "subtitle": "सिद्धा लाभ ट्रांसफर",
+        "description": "PCR/PoA एक्ट थले पीड़तां गी पारदर्शी, ब्लॉकचेन-समर्थित सिस्टम रांदी तेज मदद।",
+        "applyForRelief": "मदद वास्ते अर्जी देओ",
+        "viewTransparencyHub": "पारदर्शिता केंद्र देखो"
+    },
+    "portals": {
+        "selectYourPortal": "अपणा पोर्टल चुणो",
+        "accessPortal": "पोर्टल एक्सेस करो",
+        "victimPortal": {
+            "title": "पीड़त पोर्टल",
+            "description": "रजिस्टर करो, फंड ट्रैक करो ते इमरजेंसी मदद पाओ।"
+        },
+        "officerPortal": {
+            "title": "अधिकारी पोर्टल",
+            "description": "केस वेरीफाई करो, फंड मंजूर करो।"
+        },
+        "emergencyFund": {
+            "title": "इमरजेंसी फंड",
+            "description": "फौरी पैसे दी मदद वास्ते अर्जी देओ।"
+        }
+    },
+    "login": {
+        "title": "NyayaSetu च लॉगिन करो",
+        "selectRole": "अग्गे जाने वास्ते अपणी भूमिका चुणो",
+        "victim": "पीड़त",
+        "officer": "अधिकारी",
+        "email": "ईमेल पता",
+        "password": "पासवर्ड",
+        "loginButton": "लॉगिन"
+    },
+    "victimPortal": {
+        "title": "पीड़त पोर्टल",
+        "newApplication": "नवीं अर्जी",
+        "trackStatus": "स्थिति ट्रैक करो",
+        "form": {
+            "fullName": "पूरा नां",
+            "fatherName": "पियो दा नां",
+            "mobile": "मोबाइल नंबर",
+            "email": "ईमेल",
+            "aadhaar": "आधार नंबर",
+            "address": "पता",
+            "district": "जिला",
+            "state": "राज्य"
+        }
+    },
+    "officerPortal": {
+        "title": "अधिकारी पोर्टल",
+        "dashboard": "डैशबोर्ड",
+        "pendingCases": "लंबित केस",
+        "approvedCases": "मंजूर केस",
+        "approve": "मंजूर करो",
+        "reject": "रद्द करो"
+    },
+    "footer": {
+        "about": "NyayaSetu बारे च",
+        "quickLinks": "तेज लिंक",
+        "contact": "संपर्क",
+        "copyright": "© {{year}} NyayaSetu. सारे हक सुरक्षित।"
+    },
+    "errors": {
+        "required": "एह खाना जरूरी है",
+        "invalidEmail": "किरपा करियै सही ईमेल पता पाओ"
+    }
+}

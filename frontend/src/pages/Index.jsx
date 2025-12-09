@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   Accordion,
   AccordionContent,
@@ -38,60 +39,61 @@ const Index = () => {
   const location = useLocation();
   const auth = useAuth();
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   const features = [
     {
       icon: Shield,
-      title: "Privacy-First Design",
-      description: "Victims identified by Case ID, not names. Your dignity is protected.",
+      title: t('features.privacyFirst.title'),
+      description: t('features.privacyFirst.description'),
     },
     {
       icon: Clock,
-      title: "48-Hour Emergency Relief",
-      description: "Apply for immediate partial disbursement in critical situations.",
+      title: t('features.emergencyRelief.title'),
+      description: t('features.emergencyRelief.description'),
     },
     {
       icon: CheckCircle2,
-      title: "AI-Assisted Verification",
-      description: "Automated cross-checking with CCTNS/eCourts for faster processing.",
+      title: t('features.aiVerification.title'),
+      description: t('features.aiVerification.description'),
     },
     {
       icon: Lock,
-      title: "Blockchain Transparency",
-      description: "Every transaction recorded immutably for public accountability.",
+      title: t('features.blockchain.title'),
+      description: t('features.blockchain.description'),
     },
     {
       icon: Smartphone,
-      title: "Multi-Channel Access",
-      description: "Apply via web, SMS, IVR, or DigiLocker integration.",
+      title: t('features.multiChannel.title'),
+      description: t('features.multiChannel.description'),
     },
     {
       icon: Bell,
-      title: "Real-Time Updates",
-      description: "Track your case status like tracking a package delivery.",
+      title: t('features.realTimeUpdates.title'),
+      description: t('features.realTimeUpdates.description'),
     },
   ];
 
   const portals = [
     {
-      title: "Victim Portal",
-      description: "Register, track funds, and access emergency relief.",
+      title: t('portals.victimPortal.title'),
+      description: t('portals.victimPortal.description'),
       icon: Users,
       path: "/victim-portal",
       role: "victim",
       color: "bg-accent",
     },
     {
-      title: "Officer Portal",
-      description: "Verify cases, sanction funds, and monitor performance.",
+      title: t('portals.officerPortal.title'),
+      description: t('portals.officerPortal.description'),
       icon: FileText,
       path: "/officer-portal",
       role: "officer",
       color: "bg-primary",
     },
     {
-      title: "Emergency fund",
-      description: "Apply for immediate financial assistance in urgent situations.",
+      title: t('portals.emergencyFund.title'),
+      description: t('portals.emergencyFund.description'),
       icon: Clock,
       path: "/emergency-fund",
       role: null,
@@ -121,17 +123,16 @@ const Index = () => {
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm">
               <Shield className="h-4 w-4" />
-              <span>Secure • Transparent • Swift</span>
+              <span>{t('hero.badge')}</span>
             </div>
 
             <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-              Justice with Dignity:<br />
-              Direct Benefit Transfer
+              {t('hero.title')}<br />
+              {t('hero.subtitle')}
             </h1>
 
             <p className="text-lg md:text-xl text-primary-foreground/90 max-w-2xl mx-auto">
-              Ensuring swift relief and support to victims under PCR/PoA Acts through a transparent,
-              blockchain-backed system with multi-stakeholder coordination.
+              {t('hero.description')}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
@@ -140,12 +141,12 @@ const Index = () => {
                 className="bg-accent hover:bg-accent-hover text-accent-foreground shadow-elevated transition-base"
                 onClick={handleApplyForRelief}
               >
-                Apply for Relief
+                {t('hero.applyForRelief')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Link to="/transparency">
                 <Button size="lg" variant="outline" className="bg-white/10 border-white/30 hover:bg-white/20 text-white transition-base">
-                  View Transparency Hub
+                  {t('hero.viewTransparencyHub')}
                 </Button>
               </Link>
             </div>
@@ -153,15 +154,15 @@ const Index = () => {
             <div className="grid grid-cols-3 gap-6 md:gap-12 pt-12 max-w-2xl mx-auto">
               <div className="text-center">
                 <div className="text-3xl md:text-4xl font-bold">24/7</div>
-                <div className="text-sm text-primary-foreground/80">Support Available</div>
+                <div className="text-sm text-primary-foreground/80">{t('hero.supportAvailable')}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl md:text-4xl font-bold">48hrs</div>
-                <div className="text-sm text-primary-foreground/80">Emergency Relief</div>
+                <div className="text-sm text-primary-foreground/80">{t('hero.emergencyRelief')}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl md:text-4xl font-bold">100%</div>
-                <div className="text-sm text-primary-foreground/80">Transparent</div>
+                <div className="text-sm text-primary-foreground/80">{t('hero.transparent')}</div>
               </div>
             </div>
           </div>
@@ -173,10 +174,10 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Select Your Portal
+              {t('portals.selectYourPortal')}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Role-based access for victims and officers
+              {t('portals.roleBasedAccess')}
             </p>
           </div>
 
@@ -194,7 +195,7 @@ const Index = () => {
                   <h3 className="text-xl font-semibold mb-2">{portal.title}</h3>
                   <p className="text-muted-foreground text-sm">{portal.description}</p>
                   <div className="mt-4 flex items-center text-primary group-hover:text-primary-hover transition-base">
-                    <span className="text-sm font-medium">Access Portal</span>
+                    <span className="text-sm font-medium">{t('portals.accessPortal')}</span>
                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-base" />
                   </div>
                 </Card>
@@ -209,10 +210,10 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Understanding Our Portals
+              {t('portalDetails.understandingOurPortals')}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Detailed information about each role-based portal and how it serves you
+              {t('portalDetails.detailedInfo')}
             </p>
           </div>
 
@@ -446,10 +447,10 @@ const Index = () => {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Apply for Relief in Simple Steps
+                {t('howToApply.title')}
               </h2>
               <p className="text-muted-foreground">
-                Begin your relief application in minutes with our guided, secure process
+                {t('howToApply.subtitle')}
               </p>
             </div>
 
@@ -459,9 +460,9 @@ const Index = () => {
                   <span className="text-2xl font-bold text-accent">1</span>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">Enter Details</h3>
+                  <h3 className="font-semibold text-lg mb-2">{t('howToApply.step1.title')}</h3>
                   <p className="text-sm text-muted-foreground">
-                    Provide your Case ID or Aadhaar number for secure identification
+                    {t('howToApply.step1.description')}
                   </p>
                 </div>
               </Card>
@@ -471,9 +472,9 @@ const Index = () => {
                   <span className="text-2xl font-bold text-accent">2</span>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">Upload Documents</h3>
+                  <h3 className="font-semibold text-lg mb-2">{t('howToApply.step2.title')}</h3>
                   <p className="text-sm text-muted-foreground">
-                    Submit required documents via DigiLocker or manual upload
+                    {t('howToApply.step2.description')}
                   </p>
                 </div>
               </Card>
@@ -483,9 +484,9 @@ const Index = () => {
                   <span className="text-2xl font-bold text-accent">3</span>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">AI Verification</h3>
+                  <h3 className="font-semibold text-lg mb-2">{t('howToApply.step3.title')}</h3>
                   <p className="text-sm text-muted-foreground">
-                    Automated verification cross-checks your case with official records
+                    {t('howToApply.step3.description')}
                   </p>
                 </div>
               </Card>
@@ -495,9 +496,9 @@ const Index = () => {
                   <span className="text-2xl font-bold text-accent">4</span>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">Receive Relief</h3>
+                  <h3 className="font-semibold text-lg mb-2">{t('howToApply.step4.title')}</h3>
                   <p className="text-sm text-muted-foreground">
-                    Get provisional relief confirmation within 48 hours
+                    {t('howToApply.step4.description')}
                   </p>
                 </div>
               </Card>
@@ -509,22 +510,22 @@ const Index = () => {
                 className="bg-accent hover:bg-accent-hover text-accent-foreground shadow-elevated"
                 onClick={handleApplyForRelief}
               >
-                Begin Your Relief Application
+                {t('howToApply.beginApplication')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
 
               <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
                   <Lock className="h-4 w-4 text-secondary" />
-                  <span>Secured by Blockchain</span>
+                  <span>{t('howToApply.securedByBlockchain')}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4 text-secondary" />
-                  <span>Verified by AI</span>
+                  <span>{t('howToApply.verifiedByAI')}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Shield className="h-4 w-4 text-secondary" />
-                  <span>Supported by MoSJE</span>
+                  <span>{t('howToApply.supportedByMoSJE')}</span>
                 </div>
               </div>
             </div>
@@ -537,10 +538,10 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Why Choose Our Platform?
+              {t('features.title')}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Built with cutting-edge technology and victim-centric design principles
+              {t('features.subtitle')}
             </p>
           </div>
 
@@ -571,19 +572,19 @@ const Index = () => {
           >
             <div className="max-w-3xl mx-auto text-center space-y-6 relative z-10">
               <h2 className="text-3xl md:text-4xl font-bold">
-                Need Immediate Assistance?
+                {t('cta.needAssistance')}
               </h2>
               <p className="text-lg text-primary-foreground/90">
-                Our support team is available 24/7 to help you navigate the relief application process
+                {t('cta.supportAvailable')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
                 <Link to="/grievances">
                   <Button size="lg" className="bg-accent hover:bg-accent-hover text-accent-foreground">
-                    File a Grievance
+                    {t('cta.fileGrievance')}
                   </Button>
                 </Link>
                 <Button size="lg" variant="outline" className="bg-white/10 border-white/30 hover:bg-white/20 text-white">
-                  Call: 18002021989
+                  {t('cta.callHelpline')}
                 </Button>
               </div>
             </div>

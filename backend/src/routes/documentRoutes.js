@@ -41,6 +41,9 @@ router.use(authenticate);
 // Upload document
 router.post('/upload', upload.single('file'), documentController.uploadDocument);
 
+// Verify document type (pre-submission check - no grievanceId needed)
+router.post('/verify', upload.single('file'), documentController.verifyDocument);
+
 // Get all documents for a grievance
 router.get('/grievance/:grievanceId', documentController.getDocumentsByGrievance);
 

@@ -1,0 +1,581 @@
+{
+    "common": {
+        "login": "Login",
+        "logout": "Log Out",
+        "home": "Home",
+        "submit": "Submit",
+        "cancel": "Cancel",
+        "save": "Save",
+        "delete": "Delete",
+        "edit": "Edit",
+        "view": "View",
+        "download": "Download",
+        "upload": "Upload",
+        "search": "Search",
+        "filter": "Filter",
+        "loading": "Loading...",
+        "error": "Error",
+        "success": "Success",
+        "warning": "Warning",
+        "info": "Information",
+        "yes": "Yes",
+        "no": "No",
+        "back": "Back",
+        "next": "Next",
+        "previous": "Previous",
+        "close": "Close",
+        "confirm": "Confirm",
+        "required": "Required",
+        "optional": "Optional",
+        "selectLanguage": "Select Language",
+        "welcome": "Welcome"
+    },
+    "navbar": {
+        "home": "Home",
+        "victimPortal": "Victim Portal",
+        "officerPortal": "Officer Portal",
+        "emergencyFund": "Emergency Fund",
+        "transparencyHub": "Transparency Hub",
+        "pcrAct": "PCR Act",
+        "poaAct": "POA Act",
+        "pcrPoaRules": "PCR/POA Act Rules",
+        "justiceWithDignity": "Justice with Dignity",
+        "dbtForPcrPoa": "DBT for PCR/PoA Acts",
+        "welcomeUser": "Welcome, {{name}}"
+    },
+    "hero": {
+        "badge": "Secure • Transparent • Swift",
+        "title": "Justice with Dignity:",
+        "subtitle": "Direct Benefit Transfer",
+        "description": "Ensuring swift relief and support to victims under PCR/PoA Acts through a transparent, blockchain-backed system with multi-stakeholder coordination.",
+        "applyForRelief": "Apply for Relief",
+        "viewTransparencyHub": "View Transparency Hub",
+        "supportAvailable": "Support Available",
+        "emergencyRelief": "Emergency Relief",
+        "transparent": "Transparent"
+    },
+    "portals": {
+        "selectYourPortal": "Select Your Portal",
+        "roleBasedAccess": "Role-based access for victims and officers",
+        "accessPortal": "Access Portal",
+        "victimPortal": {
+            "title": "Victim Portal",
+            "description": "Register, track funds, and access emergency relief."
+        },
+        "officerPortal": {
+            "title": "Officer Portal",
+            "description": "Verify cases, sanction funds, and monitor performance."
+        },
+        "emergencyFund": {
+            "title": "Emergency Fund",
+            "description": "Apply for immediate financial assistance in urgent situations."
+        },
+        "financialPortal": {
+            "title": "Financial Portal",
+            "description": "Streamlined interface for banks and financial institutions."
+        },
+        "ministryDashboard": {
+            "title": "Ministry Dashboard",
+            "description": "Comprehensive oversight with real-time analytics."
+        }
+    },
+    "portalDetails": {
+        "understandingOurPortals": "Understanding Our Portals",
+        "detailedInfo": "Detailed information about each role-based portal and how it serves you",
+        "victimPortal": {
+            "heading": "Victim Portal",
+            "intro": "A safe, secure, and compassionate space for victims of caste/atrocity incidents to access immediate relief and justice.",
+            "secureRegistration": "Secure Registration",
+            "secureRegistrationDesc": "Register securely using your Aadhaar and Case/FIR ID with complete privacy protection.",
+            "easyDocUpload": "Easy Document Upload",
+            "easyDocUploadDesc": "Upload required documents via DigiLocker integration or manual upload with guided assistance.",
+            "multilingualSupport": "Multilingual Support",
+            "multilingualSupportDesc": "Access the platform in your preferred language with full support for regional languages.",
+            "provisionalRelief": "48-Hour Provisional Relief",
+            "provisionalReliefDesc": "Receive emergency partial disbursement within 48 hours after AI-assisted verification.",
+            "privacyFirst": "Privacy-First Approach",
+            "privacyFirstDesc": "Your identity is protected—you're identified by Case ID, not by name, ensuring dignity and safety.",
+            "quote": "We understand your pain. This portal is designed to provide relief quickly, safely, and with the respect you deserve. Your trust and safety are our priority."
+        },
+        "officerPortal": {
+            "heading": "Officer Portal",
+            "intro": "Empowering district and state officers with intelligent tools for swift case verification and fund sanction.",
+            "comprehensiveDashboard": "Comprehensive Dashboard",
+            "comprehensiveDashboardDesc": "Review all submitted cases with priority sorting, pending actions, and case timelines at a glance.",
+            "aiVerification": "AI-Based Verification",
+            "aiVerificationDesc": "Get intelligent insights through automated cross-checking with CCTNS/eCourts for faster processing.",
+            "docValidation": "Document Validation",
+            "docValidationDesc": "Access detailed validation reports, approve or query applications with remarks and recommendations.",
+            "financialCoordination": "Financial Coordination",
+            "financialCoordinationDesc": "Seamlessly coordinate with financial institutions and track fund disbursal progress in real-time.",
+            "performanceAnalytics": "Performance Analytics",
+            "performanceAnalyticsDesc": "Monitor processing times, prioritize urgent cases, and access data-driven insights for better decision-making."
+        },
+        "financialPortal": {
+            "heading": "Financial Portal",
+            "intro": "Streamlined interface for banks and financial institutions to execute verified DBT transactions efficiently.",
+            "verifiedCaseView": "Verified Case View",
+            "verifiedCaseViewDesc": "Access all verified cases pending DBT transactions with complete beneficiary details and sanction amounts.",
+            "digitalSanction": "Digital Sanction Workflow",
+            "digitalSanctionDesc": "Approve and process fund releases through a secure, paperless digital approval system.",
+            "blockchainLogs": "Blockchain Transaction Logs",
+            "blockchainLogsDesc": "All disbursements are recorded on an immutable blockchain ledger ensuring complete transparency and audit trails.",
+            "officerCoordination": "Officer Coordination",
+            "officerCoordinationDesc": "Direct coordination with officer dashboards for fund confirmation and ledger reconciliation.",
+            "automatedReporting": "Automated Reporting",
+            "automatedReportingDesc": "Generate disbursement receipts and transaction reports automatically uploaded to the central system."
+        },
+        "ministryDashboard": {
+            "heading": "Ministry Dashboard",
+            "intro": "Comprehensive oversight for the Ministry of Social Justice and Empowerment with real-time analytics and accountability.",
+            "centralizedAnalytics": "Centralized Analytics",
+            "centralizedAnalyticsDesc": "Access pan-India fund utilization reports, state-wise performance metrics, and district-level insights.",
+            "realTimeDashboards": "Real-Time Dashboards",
+            "realTimeDashboardsDesc": "Monitor live data on pending cases, disbursed funds, processing times, and regional performance.",
+            "transparencyFeatures": "Transparency Features",
+            "transparencyFeaturesDesc": "Blockchain-backed immutable ledger provides complete transparency and prevents fund misuse.",
+            "impactVisualizations": "Impact Visualizations",
+            "impactVisualizationsDesc": "Interactive charts and graphs showing relief impact, beneficiary demographics, and policy effectiveness.",
+            "grievanceStats": "Grievance Statistics",
+            "grievanceStatsDesc": "Track grievance trends, resolution times, and identify systemic issues for policy improvements.",
+            "quote": "Driving accountability, transparency, and efficiency to ensure every rupee reaches those who need it most."
+        }
+    },
+    "howToApply": {
+        "title": "Apply for Relief in Simple Steps",
+        "subtitle": "Begin your relief application in minutes with our guided, secure process",
+        "step1": {
+            "title": "Enter Details",
+            "description": "Provide your Case ID or Aadhaar number for secure identification"
+        },
+        "step2": {
+            "title": "Upload Documents",
+            "description": "Submit required documents via DigiLocker or manual upload"
+        },
+        "step3": {
+            "title": "AI Verification",
+            "description": "Automated verification cross-checks your case with official records"
+        },
+        "step4": {
+            "title": "Receive Relief",
+            "description": "Get provisional relief confirmation within 48 hours"
+        },
+        "beginApplication": "Begin Your Relief Application",
+        "securedByBlockchain": "Secured by Blockchain",
+        "verifiedByAI": "Verified by AI",
+        "supportedByMoSJE": "Supported by MoSJE"
+    },
+    "features": {
+        "title": "Why Choose Our Platform?",
+        "subtitle": "Built with cutting-edge technology and victim-centric design principles",
+        "privacyFirst": {
+            "title": "Privacy-First Design",
+            "description": "Victims identified by Case ID, not names. Your dignity is protected."
+        },
+        "emergencyRelief": {
+            "title": "48-Hour Emergency Relief",
+            "description": "Apply for immediate partial disbursement in critical situations."
+        },
+        "aiVerification": {
+            "title": "AI-Assisted Verification",
+            "description": "Automated cross-checking with CCTNS/eCourts for faster processing."
+        },
+        "blockchain": {
+            "title": "Blockchain Transparency",
+            "description": "Every transaction recorded immutably for public accountability."
+        },
+        "multiChannel": {
+            "title": "Multi-Channel Access",
+            "description": "Apply via web, SMS, IVR, or DigiLocker integration."
+        },
+        "realTimeUpdates": {
+            "title": "Real-Time Updates",
+            "description": "Track your case status like tracking a package delivery."
+        }
+    },
+    "cta": {
+        "needAssistance": "Need Immediate Assistance?",
+        "supportAvailable": "Our support team is available 24/7 to help you navigate the relief application process",
+        "fileGrievance": "File a Grievance",
+        "callHelpline": "Call: 18002021989"
+    },
+    "login": {
+        "title": "Login to NyayaSetu",
+        "selectRole": "Select your role to continue",
+        "victim": "Victim",
+        "officer": "Officer",
+        "email": "Email Address",
+        "password": "Password",
+        "forgotPassword": "Forgot Password?",
+        "loginButton": "Login",
+        "noAccount": "Don't have an account?",
+        "register": "Register here",
+        "loginSuccess": "Login successful!",
+        "loginError": "Login failed. Please check your credentials."
+    },
+    "victimPortal": {
+        "title": "Victim Portal",
+        "newApplication": "New Application",
+        "trackStatus": "Track Status",
+        "myDocuments": "My Documents",
+        "grievanceTicket": "Grievance Ticket",
+        "intercasteMarriage": "Intercaste Marriage",
+        "personalDetails": "Personal Details",
+        "incidentDetails": "Incident Details",
+        "documentUpload": "Document Upload",
+        "bankDetails": "Bank Details",
+        "form": {
+            "fullName": "Full Name",
+            "fatherName": "Father's Name",
+            "motherName": "Mother's Name",
+            "dob": "Date of Birth",
+            "gender": "Gender",
+            "male": "Male",
+            "female": "Female",
+            "other": "Other",
+            "caste": "Caste",
+            "subCaste": "Sub-Caste",
+            "religion": "Religion",
+            "mobile": "Mobile Number",
+            "email": "Email Address",
+            "aadhaar": "Aadhaar Number",
+            "address": "Address",
+            "district": "District",
+            "state": "State",
+            "pincode": "PIN Code",
+            "incidentDate": "Date of Incident",
+            "incidentPlace": "Place of Incident",
+            "incidentType": "Type of Incident",
+            "firNumber": "FIR Number",
+            "policeStation": "Police Station",
+            "caseId": "Case ID",
+            "description": "Description",
+            "bankName": "Bank Name",
+            "accountNumber": "Account Number",
+            "ifscCode": "IFSC Code",
+            "branchName": "Branch Name"
+        },
+        "documents": {
+            "aadhaarCard": "Aadhaar Card",
+            "casteCertificate": "Caste Certificate",
+            "firCopy": "FIR Copy",
+            "medicalReport": "Medical Report",
+            "photograph": "Photograph",
+            "bankPassbook": "Bank Passbook",
+            "incomeProof": "Income Proof"
+        }
+    },
+    "officerPortal": {
+        "title": "Officer Portal",
+        "dashboard": "Dashboard",
+        "pendingCases": "Pending Cases",
+        "approvedCases": "Approved Cases",
+        "rejectedCases": "Rejected Cases",
+        "allCases": "All Cases",
+        "caseDetails": "Case Details",
+        "viewDetails": "View Details",
+        "approve": "Approve",
+        "reject": "Reject",
+        "putOnHold": "Put on Hold",
+        "raiseQuery": "Raise Query",
+        "disbursement": "Disbursement",
+        "transactionId": "Transaction ID",
+        "amount": "Amount",
+        "status": "Status",
+        "remarks": "Remarks"
+    },
+    "emergencyFund": {
+        "title": "Emergency Fund",
+        "subtitle": "Immediate Financial Assistance",
+        "description": "Apply for emergency relief within 48 hours for critical situations",
+        "eligibility": "Eligibility Criteria",
+        "applyNow": "Apply Now"
+    },
+    "transparency": {
+        "title": "Transparency Hub",
+        "subtitle": "Complete visibility into fund utilization",
+        "totalDisbursed": "Total Funds Disbursed",
+        "casesProcessed": "Cases Processed",
+        "averageTime": "Average Processing Time",
+        "stateWise": "State-wise Distribution"
+    },
+    "footer": {
+        "about": "About NyayaSetu",
+        "aboutDesc": "A digital platform for transparent and swift disbursement of relief funds to victims under PCR/PoA Acts.",
+        "quickLinks": "Quick Links",
+        "legal": "Legal",
+        "contact": "Contact",
+        "privacyPolicy": "Privacy Policy",
+        "termsOfService": "Terms of Service",
+        "disclaimer": "Disclaimer",
+        "helpline": "Helpline",
+        "email": "Email",
+        "address": "Address",
+        "copyright": "© {{year}} NyayaSetu. All rights reserved.",
+        "govtOfIndia": "Government of India Initiative"
+    },
+    "errors": {
+        "required": "This field is required",
+        "invalidEmail": "Please enter a valid email address",
+        "invalidPhone": "Please enter a valid 10-digit phone number",
+        "invalidAadhaar": "Please enter a valid 12-digit Aadhaar number",
+        "invalidPincode": "Please enter a valid 6-digit PIN code",
+        "fileTooLarge": "File size should be less than {{size}}MB",
+        "invalidFileType": "Invalid file type. Allowed types: {{types}}",
+        "networkError": "Network error. Please try again.",
+        "serverError": "Server error. Please try again later.",
+        "sessionExpired": "Your session has expired. Please login again."
+    },
+    "success": {
+        "applicationSubmitted": "Your application has been submitted successfully!",
+        "documentUploaded": "Document uploaded successfully!",
+        "profileUpdated": "Profile updated successfully!",
+        "statusUpdated": "Status updated successfully!"
+    },
+    "chatbot": {
+        "assistantName": "NyayaSetu Assistant",
+        "alwaysHere": "Always here to help",
+        "placeholder": "Type your message...",
+        "welcome": "Namaste! Welcome to NyayaSetu Assistant. How can I help you today?\n\nYou can ask me about:\n• What is Nyaya Setu\n• Tracking your application\n• Payment and DBT process\n• Grievance reporting\n• Data privacy and more",
+        "fallback": "I'm sorry, I couldn't find an exact answer to your question. Here are some things you can ask me about:\n\n• What is Nyaya Setu?\n• How to track my application?\n• DBT process and payments\n• Grievance reporting\n• Data privacy and security\n\nFor further assistance, please contact our Help & Support team.",
+        "quickActions": {
+            "whatIsNyayaSetu": "What is Nyaya Setu?",
+            "trackApplication": "How to track application?",
+            "paymentIssues": "Payment issues",
+            "dataSafety": "Data safety"
+        },
+        "faq": {
+            "1": {
+                "question": "What is Nyaya Setu?",
+                "answer": "Nyaya Setu is a digital platform developed by Dream's Hack to support Direct Benefit Transfer (DBT), case verification, grievance reporting, and monitoring related to the PCR Act, 1955 and the PoA Act, 1989. It aims to make victim relief faster, transparent, and easier to access.",
+                "keywords": [
+                    "nyaya",
+                    "setu",
+                    "what",
+                    "about",
+                    "platform",
+                    "definition",
+                    "purpose",
+                    "meaning",
+                    "tell me"
+                ]
+            },
+            "2": {
+                "question": "Who can use Nyaya Setu?",
+                "answer": "Victims eligible for relief under PCR/PoA Acts, their authorized representatives, district and state officials, field officers, and other stakeholders involved in case processing and monitoring can use the platform.",
+                "keywords": [
+                    "who",
+                    "use",
+                    "users",
+                    "eligible",
+                    "eligibility",
+                    "access",
+                    "allowed",
+                    "can use",
+                    "victim",
+                    "officer",
+                    "stakeholder"
+                ]
+            },
+            "3": {
+                "question": "Do I need to create an account to use Nyaya Setu?",
+                "answer": "Yes. Beneficiaries and officials must create a secure account to access personalized services, track applications, upload documents, and receive DBT updates.",
+                "keywords": [
+                    "account",
+                    "create",
+                    "register",
+                    "registration",
+                    "signup",
+                    "sign up",
+                    "login",
+                    "need account"
+                ]
+            },
+            "4": {
+                "question": "What documents are required for registration?",
+                "answer": "Commonly required documents include identity proof, case details (FIR number), address proof, bank details, and supporting documents. Some documents may also be fetched through DigiLocker during verification.",
+                "keywords": [
+                    "documents",
+                    "required",
+                    "registration",
+                    "proof",
+                    "identity",
+                    "fir",
+                    "address",
+                    "bank",
+                    "digilocker",
+                    "upload",
+                    "need"
+                ]
+            },
+            "5": {
+                "question": "Does Nyaya Setu support Aadhaar verification?",
+                "answer": "Yes. Nyaya Setu supports Aadhaar authentication for identity verification. Raw Aadhaar numbers are not stored; only tokenized, secure identifiers are used.",
+                "keywords": [
+                    "aadhaar",
+                    "aadhar",
+                    "verification",
+                    "identity",
+                    "authenticate",
+                    "support",
+                    "does"
+                ]
+            },
+            "6": {
+                "question": "Can I access Nyaya Setu without Aadhaar?",
+                "answer": "Yes. Users without Aadhaar can verify their identity using alternative KYC documents, DigiLocker-based documents, or assisted verification through field officers.",
+                "keywords": [
+                    "without",
+                    "aadhaar",
+                    "aadhar",
+                    "alternative",
+                    "kyc",
+                    "no aadhaar",
+                    "digilocker",
+                    "access"
+                ]
+            },
+            "7": {
+                "question": "How does the DBT process work on Nyaya Setu?",
+                "answer": "Once your case is verified and approved by district authorities, your relief amount is sent directly to your registered bank account through secure DBT channels. You can track each step in real time.",
+                "keywords": [
+                    "dbt",
+                    "direct benefit transfer",
+                    "process",
+                    "work",
+                    "payment",
+                    "relief",
+                    "bank",
+                    "money",
+                    "amount",
+                    "how"
+                ]
+            },
+            "8": {
+                "question": "How can I track the status of my relief application?",
+                "answer": "Log in to your Nyaya Setu dashboard and go to the Status Tracking section. You will see updates for verification, sanction approval, payment processing, and disbursement.",
+                "keywords": [
+                    "track",
+                    "status",
+                    "application",
+                    "relief",
+                    "tracking",
+                    "check",
+                    "progress",
+                    "where",
+                    "update",
+                    "dashboard"
+                ]
+            },
+            "9": {
+                "question": "What should I do if my payment fails or is delayed?",
+                "answer": "You can raise a grievance through the Grievance Module on Nyaya Setu. The platform notifies the concerned authority and the issue will be resolved based on defined service-level timelines.",
+                "keywords": [
+                    "payment",
+                    "fail",
+                    "failed",
+                    "delay",
+                    "delayed",
+                    "problem",
+                    "issue",
+                    "not received",
+                    "pending",
+                    "stuck"
+                ]
+            },
+            "10": {
+                "question": "What is the Grievance Module?",
+                "answer": "The Grievance Module allows users to report problems such as incorrect details, payment delays, document issues, or account-related problems. Each grievance is assigned a tracking ID.",
+                "keywords": [
+                    "grievance",
+                    "module",
+                    "complaint",
+                    "report",
+                    "problem",
+                    "issue",
+                    "ticket",
+                    "raise"
+                ]
+            },
+            "11": {
+                "question": "Is my personal data safe on Nyaya Setu?",
+                "answer": "Yes. Nyaya Setu follows strict security measures including encryption, secure APIs, access control, and compliance with government security standards to protect user data.",
+                "keywords": [
+                    "safe",
+                    "secure",
+                    "security",
+                    "data",
+                    "privacy",
+                    "personal",
+                    "protection",
+                    "encrypted"
+                ]
+            },
+            "12": {
+                "question": "Will my case information be visible to others?",
+                "answer": "No. All sensitive beneficiary data, including case documents, is accessible only to authorized users and officials. Any public dashboards display anonymized and aggregated data only.",
+                "keywords": [
+                    "visible",
+                    "others",
+                    "privacy",
+                    "case",
+                    "information",
+                    "see",
+                    "public",
+                    "confidential",
+                    "private",
+                    "hidden"
+                ]
+            },
+            "13": {
+                "question": "Can field officers use Nyaya Setu offline?",
+                "answer": "Yes. Field officers can use the offline-enabled app to capture beneficiary data in remote areas with low or no internet connectivity. Data syncs automatically when the network becomes available.",
+                "keywords": [
+                    "offline",
+                    "field",
+                    "officer",
+                    "internet",
+                    "remote",
+                    "connectivity",
+                    "sync",
+                    "no internet",
+                    "network"
+                ]
+            },
+            "14": {
+                "question": "How do I update my bank details or contact information?",
+                "answer": "Log in to your account and go to the Profile section. You can update your mobile number, email, or bank details. Certain changes may require re-verification.",
+                "keywords": [
+                    "update",
+                    "bank",
+                    "details",
+                    "contact",
+                    "profile",
+                    "change",
+                    "mobile",
+                    "phone",
+                    "email",
+                    "edit",
+                    "modify"
+                ]
+            },
+            "15": {
+                "question": "What if I am facing login or technical issues?",
+                "answer": "You can use the Help & Support page to report login issues or technical errors. Our team will assist you using the contact details provided on the website.",
+                "keywords": [
+                    "login",
+                    "technical",
+                    "issue",
+                    "problem",
+                    "error",
+                    "help",
+                    "support",
+                    "cannot login",
+                    "can't login",
+                    "trouble",
+                    "facing"
+                ]
+            }
+        }
+    }
+}

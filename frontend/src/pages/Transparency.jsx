@@ -13,11 +13,13 @@ import {
   LineChart,
   Line,
 } from "recharts";
+import { useTranslation } from "react-i18next";
 import { TrendingUp, Users, DollarSign, CheckCircle2, Clock } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const Transparency = () => {
+  const { t } = useTranslation();
   const stateData = [
     { state: "Maharashtra", disbursed: 450, pending: 120 },
     { state: "Tamil Nadu", disbursed: 380, pending: 95 },
@@ -82,11 +84,10 @@ const Transparency = () => {
           {/* Header */}
           <div className="mb-12">
             <h1 className="text-3xl md:text-4xl font-bold mb-4">
-              Transparency Hub
+              {t('transparency.title')}
             </h1>
             <p className="text-muted-foreground max-w-2xl">
-              Real-time public dashboard showing aggregated fund allocation, disbursement status,
-              and performance metrics across states and districts.
+              {t('transparency.subtitle')}
             </p>
           </div>
 

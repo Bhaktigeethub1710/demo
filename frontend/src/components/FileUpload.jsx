@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { FileText, Upload, X } from "lucide-react";
+import { FileText, Upload, X, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { documentAPI } from "@/services/api";
 
 /**
  * FileUpload Component
  * 
- * A reusable file upload component with validation, preview, and accessibility features.
+ * A reusable file upload component with validation, preview, and AI document verification.
  * Supports both controlled and uncontrolled modes.
  * 
  * @param {string} id - Required. Used for input id and label association
@@ -17,6 +18,8 @@ import { FileText, Upload, X } from "lucide-react";
  * @param {function} onFileChange - Callback function when file changes (file: File | null)
  * @param {boolean} required - Optional. Whether the field is required
  * @param {string} className - Optional. Additional CSS classes for container
+ * @param {string} expectedDocumentType - Optional. Expected document type for AI verification (e.g., 'fir', 'casteCertificate')
+ * @param {function} onVerificationResult - Optional. Callback for verification result
  */
 const FileUpload = ({
     id,
@@ -28,10 +31,14 @@ const FileUpload = ({
     onFileChange,
     required = false,
     className = "",
+    expectedDocumentType = null, // NEW: For AI verification
+    onVerificationResult = null, // NEW: Callback for verification result
 }) => {
     const [internalFile, setInternalFile] = useState(null);
     const [error, setError] = useState("");
     const [previewUrl, setPreviewUrl] = useState(null);
+    const [isVerifying, setIsVerifying] = useState(false);
+    const [verificationStatus, setVerificationStatus] = useState(null); // 'verified', 'failed', 'skipped', null
     const inputRef = useRef(null);
 
     // Determine if we're in controlled mode (value prop was explicitly passed)
@@ -53,14 +60,66 @@ const FileUpload = ({
         return validTypes.includes(file.type.toLowerCase());
     };
 
+    // Verify document type with AI
+    const verifyDocumentType = async (file) => {
+        if (!expectedDocumentType) {
+            // No verification needed if no expected type specified
+            return { success: true, skipped: true };
+        }
+
+        setIsVerifying(true);
+        setVerificationStatus(null);
+        setError("");
+
+        try {
+            const result = await documentAPI.verifyType(file, expectedDocumentType);
+
+            if (result.success) {
+                setVerificationStatus(result.verification?.verified ? 'verified' : 'skipped');
+                if (onVerificationResult) {
+                    onVerificationResult({ success: true, ...result });
+                }
+                return result;
+            } else {
+                setVerificationStatus('failed');
+                setError(result.message || "Document verification failed");
+                if (onVerificationResult) {
+                    onVerificationResult({ success: false, ...result });
+                }
+                return result;
+            }
+        } catch (err) {
+            console.error("Document verification error:", err);
+
+            // Check if it's a 400 error (wrong document type)
+            if (err.response?.status === 400) {
+                const errorMessage = err.response?.data?.message || "Wrong document type detected";
+                setVerificationStatus('failed');
+                setError(errorMessage);
+                if (onVerificationResult) {
+                    onVerificationResult({ success: false, message: errorMessage, ...err.response?.data });
+                }
+                return { success: false, message: errorMessage };
+            }
+
+            // For other errors, allow upload but show warning
+            setVerificationStatus('skipped');
+            console.warn("Verification failed, allowing upload anyway:", err.message);
+            return { success: true, skipped: true };
+        } finally {
+            setIsVerifying(false);
+        }
+    };
+
     // Handle file selection
-    const handleFileChange = (e) => {
+    const handleFileChange = async (e) => {
         const file = e.target.files?.[0];
 
         if (!file) return;
 
-        // Clear previous error
+        // Clear previous error and verification status
         setError("");
+        setVerificationStatus(null);
 
         // Validate file type
         if (!isValidType(file)) {
@@ -83,6 +142,21 @@ const FileUpload = ({
             setPreviewUrl(url);
         } else {
             setPreviewUrl(null);
+        }
+
+        // Verify document type with AI (if expectedDocumentType is provided)
+        if (expectedDocumentType) {
+            const verificationResult = await verifyDocumentType(file);
+
+            // If verification failed, clear the file and stop
+            if (!verificationResult.success) {
+                e.target.value = ""; // Clear input
+                if (previewUrl) {
+                    URL.revokeObjectURL(previewUrl);
+                    setPreviewUrl(null);
+                }
+                return;
+            }
         }
 
         // Update state
@@ -111,8 +185,9 @@ const FileUpload = ({
             inputRef.current.value = "";
         }
 
-        // Clear error
+        // Clear error and verification status
         setError("");
+        setVerificationStatus(null);
 
         // Update state
         if (!isControlled) {
@@ -147,6 +222,20 @@ const FileUpload = ({
         };
     }, [previewUrl]);
 
+    // Get verification status icon
+    const getStatusIcon = () => {
+        if (isVerifying) {
+            return <Loader2 className="h-4 w-4 animate-spin text-blue-500" />;
+        }
+        if (verificationStatus === 'verified') {
+            return <CheckCircle className="h-4 w-4 text-green-500" />;
+        }
+        if (verificationStatus === 'failed') {
+            return <AlertCircle className="h-4 w-4 text-red-500" />;
+        }
+        return null;
+    };
+
     return (
         <div className={className}>
             {/* Hidden file input */}
@@ -159,11 +248,12 @@ const FileUpload = ({
                 className="hidden"
                 required={required}
                 aria-label={label}
+                disabled={isVerifying}
             />
 
             {/* Upload card */}
             <div
-                onClick={() => inputRef.current?.click()}
+                onClick={() => !isVerifying && inputRef.current?.click()}
                 onKeyDown={handleKeyDown}
                 tabIndex={0}
                 role="button"
@@ -175,6 +265,8 @@ const FileUpload = ({
           border-input focus-visible:outline-none focus-visible:ring-2 
           focus-visible:ring-ring focus-visible:ring-offset-2
           ${error ? "border-red-500" : ""}
+          ${verificationStatus === 'verified' ? "border-green-500" : ""}
+          ${isVerifying ? "opacity-75 cursor-wait" : ""}
         `}
             >
                 {/* Left side: Icon + Label */}
@@ -192,11 +284,14 @@ const FileUpload = ({
 
                     {/* Label and helper text */}
                     <div className="flex-1 min-w-0">
-                        <p className="font-medium text-sm">
+                        <p className="font-medium text-sm flex items-center gap-2">
                             {label}
                             {required && <span className="text-red-500 ml-1">*</span>}
+                            {getStatusIcon()}
                         </p>
-                        <p className="text-xs text-muted-foreground">{helperText}</p>
+                        <p className="text-xs text-muted-foreground">
+                            {isVerifying ? "Verifying document..." : helperText}
+                        </p>
                     </div>
                 </div>
 
@@ -209,20 +304,28 @@ const FileUpload = ({
                         onClick={(e) => {
                             e.stopPropagation();
                             e.preventDefault();
-                            if (inputRef.current) {
+                            if (!isVerifying && inputRef.current) {
                                 inputRef.current.click();
                             }
                         }}
                         className="flex-shrink-0"
+                        disabled={isVerifying}
                     >
-                        <Upload className="mr-2 h-4 w-4" />
-                        Upload
+                        {isVerifying ? (
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        ) : (
+                            <Upload className="mr-2 h-4 w-4" />
+                        )}
+                        {isVerifying ? "Verifying..." : "Upload"}
                     </Button>
                 ) : (
                     <div className="flex items-center gap-2 flex-shrink-0">
                         {/* File info pill */}
                         <div
-                            className="flex items-center gap-2 bg-primary/10 text-primary px-3 py-1.5 rounded-full text-sm max-w-[220px]"
+                            className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-sm max-w-[220px] ${verificationStatus === 'verified'
+                                    ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
+                                    : 'bg-primary/10 text-primary'
+                                }`}
                             title={`${currentFile.name} (${formatBytes(currentFile.size)})`}
                             aria-label={`Selected file: ${currentFile.name}, ${formatBytes(currentFile.size)}`}
                         >
@@ -242,6 +345,7 @@ const FileUpload = ({
                             onClick={handleRemove}
                             className="h-8 w-8 p-0 flex-shrink-0 hover:bg-destructive hover:text-destructive-foreground"
                             aria-label="Remove file"
+                            disabled={isVerifying}
                         >
                             <X className="h-4 w-4" />
                         </Button>
@@ -258,6 +362,14 @@ const FileUpload = ({
                 >
                     <span>⚠️</span>
                     <span>{error}</span>
+                </div>
+            )}
+
+            {/* Verification success message */}
+            {verificationStatus === 'verified' && !error && (
+                <div className="mt-2 text-sm text-green-600 dark:text-green-400 flex items-center gap-1">
+                    <span>✅</span>
+                    <span>Document verified successfully</span>
                 </div>
             )}
         </div>

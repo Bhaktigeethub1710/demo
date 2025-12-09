@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useTranslation } from "react-i18next";
 import {
   Shield,
   Upload,
@@ -21,6 +22,8 @@ import {
   HelpCircle,
   Wallet,
   CreditCard,
+  Users,
+  Home,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -28,10 +31,11 @@ import { useToast } from "@/hooks/use-toast";
 import LegalPopCard from "@/components/LegalPopCard";
 import VictimSupportFaqContent from "@/components/VictimSupportFaqContent";
 import FileUpload from "@/components/FileUpload";
-import { grievanceAPI, documentAPI } from "@/services/api";
+import { grievanceAPI, documentAPI, intercasteAPI } from "@/services/api";
 
 const VictimPortal = () => {
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState("register");
 
   // Form data state
@@ -90,6 +94,38 @@ const VictimPortal = () => {
   const [medicalFile, setMedicalFile] = useState(null);
   const [otherDocsFile, setOtherDocsFile] = useState(null);
   const [casteFile, setCasteFile] = useState(null);
+
+  // Intercaste Marriage Form State
+  const [intercasteFormData, setIntercasteFormData] = useState({
+    husbandName: "",
+    husbandAadhaar: "",
+    husbandMobile: "",
+    husbandEmail: "",
+    wifeName: "",
+    wifeAadhaar: "",
+    wifeMobile: "",
+    wifeEmail: "",
+    currentAddress: "",
+    district: "",
+    state: "",
+    pincode: "",
+    scstSpouse: "", // "husband" or "wife"
+    accountHolderName: "",
+    bankName: "",
+    accountNumber: "",
+    confirmAccountNumber: "",
+    ifscCode: ""
+  });
+  const [intercasteElectricBillFile, setIntercasteElectricBillFile] = useState(null);
+  const [intercasteMarriageCertFile, setIntercasteMarriageCertFile] = useState(null);
+  const [intercasteScstCertFile, setIntercasteScstCertFile] = useState(null);
+  const [intercasteOtherCertFile, setIntercasteOtherCertFile] = useState(null);
+  const [intercasteSubmitting, setIntercasteSubmitting] = useState(false);
+  const [intercasteSuccess, setIntercasteSuccess] = useState(false);
+  const [intercasteCaseId, setIntercasteCaseId] = useState("");
+  const [showIntercasteReviewModal, setShowIntercasteReviewModal] = useState(false);
+  const [intercasteAccountNumber, setIntercasteAccountNumber] = useState("");
+  const [intercasteConfirmAccountNumber, setIntercasteConfirmAccountNumber] = useState("");
 
   // Dummy officer transaction ID for frontend verification
   const officerTransactionId = "TXN123456789";
@@ -546,11 +582,16 @@ const VictimPortal = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8">
-              <TabsList className="grid w-full grid-cols-3">
+              <TabsList className="grid w-full grid-cols-4">
                 <TabsTrigger value="register" className="flex items-center gap-2">
                   <FileText className="h-4 w-4" />
                   <span className="hidden sm:inline">Apply for Relief</span>
                   <span className="sm:hidden">Apply</span>
+                </TabsTrigger>
+                <TabsTrigger value="intercaste" className="flex items-center gap-2">
+                  <Users className="h-4 w-4" />
+                  <span className="hidden sm:inline">Intercaste Marriage</span>
+                  <span className="sm:hidden">Intercaste</span>
                 </TabsTrigger>
                 <TabsTrigger value="track" className="flex items-center gap-2">
                   <Eye className="h-4 w-4" />
@@ -757,8 +798,9 @@ const VictimPortal = () => {
                         <FileUpload
                           id="caste-certificate"
                           label="Caste Certificate (PDF/JPG)"
-                          helperText="Max 5MB"
+                          helperText="Max 5MB - Document will be verified"
                           onFileChange={setCasteFile}
+                          expectedDocumentType="casteCertificate"
                           required
                         />
                       </div>
@@ -778,15 +820,53 @@ const VictimPortal = () => {
                             required
                           >
                             <option value="">Select type of atrocity</option>
-                            <option value="verbal-abuse">Caste-based verbal abuse / humiliation</option>
-                            <option value="physical-assault">Physical assault</option>
-                            <option value="sexual-assault">Sexual assault / harassment</option>
-                            <option value="rape">Rape / Attempt to rape</option>
-                            <option value="property-damage">Damage or burning of house/property</option>
-                            <option value="social-boycott">Social boycott</option>
-                            <option value="land-occupation">Wrongful land occupation</option>
-                            <option value="threats">Threats / Intimidation</option>
-                            <option value="other">Other (specify)</option>
+                            <option value="inedible-substance">Putting inedible or dirty/obnoxious substance on a person (कसी व्यक्त को खाने योग्य नहीं या गंदा पदार्थ जबरदस्ती देना / लगाना)</option>
+                            <option value="excreta-dumping">Throwing/dumping excreta, sewage, carcass on someone (किसी पर मल-मूत्र, गंदा पानी या पशु-मृत शरीर फेंकना)</option>
+                            <option value="intentional-dumping">Dumping such substances intentionally to insult or annoy (अपमान या परेशान करने की नीयत से गंदगी डालना)</option>
+                            <option value="footwear-garland">Garlanding with footwear, parading naked or half-naked (चप्पल की माला पहनाना, नग्न या अर्ध-नग्न घुमाना)</option>
+                            <option value="forced-humiliation">Forcing to remove clothes, shave head, moustache or paint body (कपड़े उतरवाना, सिर/मूंछ जबरन मुंडवाना, शरीर पर रंग लगाना)</option>
+                            <option value="land-occupation">Wrongful occupation or illegal cultivation on land (ज़मीन पर गैर-कानूनी कब्ज़ा या खेती करना)</option>
+                            <option value="land-dispossession">Wrongful dispossession from land or interfering with forest rights (किसी को उसकी ज़मीन/जंगल के अधिकार से बेदखल करना)</option>
+                            <option value="forced-labour">Forced labour / begar / bonded labour (बेगार करवाना, जबरन या बंधुआ मज़दूरी करवाना)</option>
+                            <option value="forced-dead-body">Forcing to dispose or carry human/animal dead bodies (मानव/पशु शव उठाने या निपटाने के लिए मजबूर करना)</option>
+                            <option value="manual-scavenging">Forcing to do manual scavenging or employing for it (जबरन मैला ढोना करवाना या इसके लिए नियुक्त करना)</option>
+                            <option value="devadasi">Dedicating an SC/ST woman as a devadasi (किसी एससी/एसटी महिला को देवदासी बनाना)</option>
+                            <option value="voting-prevention">Preventing from voting or filing nomination (मतदान या नामांकन करने से रोकना)</option>
+                            <option value="panchayat-threat">Stopping or threatening a Panchayat/Municipal office holder (पंचायत/नगरपालिका अधिकारी को काम करने से रोकना या धमकाना)</option>
+                            <option value="post-election-violence">Violence after elections or social/economic boycott (चुनाव के बाद हिंसा करना या सामाजिक/आर्थिक बहिष्कार करना)</option>
+                            <option value="voting-retaliation">Committing any offence because a person voted/did not vote (किसी ने वोट दिया या नहीं दिया — इस कारण अपराध करना)</option>
+                            <option value="false-cases">Filing false, malicious legal cases against SC/ST person (एससी/एसटी व्यक्ति पर झूठे या बदनीयत कानूनी मामले दर्ज करना)</option>
+                            <option value="false-information">Giving false information to a public servant (सरकारी अधिकारी को झूठी/गलत जानकारी देना)</option>
+                            <option value="public-insult">Intentional insult in public view (सार्वजनिक स्थान पर जानबूझकर अपमान करना)</option>
+                            <option value="caste-abuse">Abusing by caste name in public (सार्वजनिक स्थान पर जाति-सूचक गाली देना)</option>
+                            <option value="sacred-damage">Destroying/damaging sacred or respected objects (पवित्र या सम्मानित वस्तुओं को नुकसान पहुँचाना)</option>
+                            <option value="caste-hatred">Promoting caste-hatred or enmity (जातीय नफरत या वैमनस्य फैलाना)</option>
+                            <option value="dead-disrespect">Disrespecting respected dead person by words/acts (किसी दिवंगत सम्मानित व्यक्ति का अपमान करना)</option>
+                            <option value="sexual-touching">Sexual touching/gesture without consent of SC/ST woman (एससी/एसटी महिला को बिना सहमति यौन रूप से छूना या संकेत करना)</option>
+                            <option value="acid-attack">Throwing or attempt to throw acid (तेज़ाब फेंकना या फेंकने का प्रयास करना)</option>
+                            <option value="outraging-modesty">Outraging modesty of woman (महिला की मर्यादा भंग करना)</option>
+                            <option value="sexual-harassment">Sexual harassment (यौन उत्पीड़न)</option>
+                            <option value="disrobe-intent">Intent to disrobe a woman (महिला के कपड़े उतारने की नीयत से हमला करना)</option>
+                            <option value="voyeurism">Voyeurism (चोरी-छिपे देखना या वीडियो बनाना)</option>
+                            <option value="stalking">Stalking (पीछा करना या परेशान करना)</option>
+                            <option value="marital-rape-separation">Sexual intercourse by husband during separation (अलग रहने की अवधि में पति द्वारा जबरन शारीरिक संबंध बनाना)</option>
+                            <option value="authority-abuse">Sexual intercourse by person in authority (अधिकार में बैठे व्यक्ति द्वारा यौन शोषण)</option>
+                            <option value="modesty-insult">Insulting modesty of woman by word/gesture (महिला की मर्यादा का शब्द/इशारे से अपमान करना)</option>
+                            <option value="water-contamination">Fouling or contaminating water (पानी को गंदा या दूषित करना)</option>
+                            <option value="passage-denial">Denying right of passage to public place (सार्वजनिक मार्ग/रास्ते का उपयोग रोकना)</option>
+                            <option value="forced-eviction">Forcing a person to leave house/village (किसी व्यक्ति को घर या गांव छोड़ने के लिए मजबूर करना)</option>
+                            <option value="public-resource-denial">Preventing SC/ST person from using public resources (सार्वजनिक पानी, सड़क, मंदिर, वाहन, कपड़े आदि के उपयोग से रोकना)</option>
+                            <option value="witch-torture">Physical/mental torture by calling woman "witch" (महिला को "डायन/चुड़ैल" कहकर शारीरिक/मानसिक यातना देना)</option>
+                            <option value="social-boycott">Imposing or threatening social/economic boycott (सामाजिक या आर्थिक बहिष्कार करना/धमकाना)</option>
+                            <option value="false-evidence">Giving or fabricating false evidence (झूठे साक्ष्य देना या तैयार करना)</option>
+                            <option value="ipc-10-years">Committing IPC offences punishable with 10+ years (10 वर्ष या अधिक दंड वाली गंभीर IPC धाराओं का अपराध करना)</option>
+                            <option value="poa-ipc-schedule">Offences under IPC Schedule of PoA Act (PoA अधिनियम सूची में शामिल IPC अपराध करना)</option>
+                            <option value="public-servant-abuse">Victimization by a public servant (सरकारी कर्मचारी द्वारा प्रताड़ित करना)</option>
+                            <option value="disability-caused">Disability caused due to offence (अपराध के कारण विकलांगता होना)</option>
+                            <option value="rape-gang-rape">Rape / Gang-rape (बलात्कार / सामूहिक बलात्कार)</option>
+                            <option value="murder-death">Murder or death (हत्या या मृत्यु होना)</option>
+                            <option value="major-offence-relief">Additional relief for major offences (हत्या, बलात्कार जैसे गंभीर अपराधों पर अतिरिक्त सहायता)</option>
+                            <option value="house-destruction">Complete destruction or burning of house (घर का जलना या पूरी तरह नष्ट होना)</option>
                           </select>
                         </div>
 
@@ -970,16 +1050,18 @@ const VictimPortal = () => {
                             <FileUpload
                               id="fir-copy"
                               label="FIR Copy*"
-                              helperText="PDF, JPG (Max 5MB)"
+                              helperText="PDF, JPG (Max 5MB) - Document will be verified"
                               onFileChange={setFirFile}
+                              expectedDocumentType="fir"
                               required
                             />
 
                             <FileUpload
                               id="medical-report"
                               label="Medical Report (if applicable)"
-                              helperText="PDF, JPG (Max 5MB)"
+                              helperText="PDF, JPG (Max 5MB) - Document will be verified"
                               onFileChange={setMedicalFile}
+                              expectedDocumentType="medical"
                             />
 
                             <FileUpload
@@ -1295,6 +1377,608 @@ const VictimPortal = () => {
                             </div>
                           </div>
                         </Card>
+                      </div>
+                    )}
+                  </div>
+                </Card>
+              </TabsContent>
+
+              {/* Intercaste Marriage Tab */}
+              <TabsContent value="intercaste" className="space-y-6">
+                <Card className="p-6 md:p-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h2 className="text-2xl font-bold mb-2">Intercaste Marriage Relief Application</h2>
+                      <p className="text-muted-foreground">
+                        Apply for relief under Intercaste Marriage Scheme. All information is encrypted and handled with strict confidentiality.
+                      </p>
+                    </div>
+
+                    {!intercasteSuccess ? (
+                      <form onSubmit={(e) => {
+                        e.preventDefault();
+                        const form = e.target;
+                        const updatedData = {
+                          husbandName: form['husband-name'].value,
+                          husbandAadhaar: form['husband-aadhaar'].value,
+                          husbandMobile: form['husband-mobile'].value,
+                          husbandEmail: form['husband-email']?.value || "",
+                          wifeName: form['wife-name'].value,
+                          wifeAadhaar: form['wife-aadhaar'].value,
+                          wifeMobile: form['wife-mobile'].value,
+                          wifeEmail: form['wife-email']?.value || "",
+                          currentAddress: form['current-address'].value,
+                          district: form['im-district'].value,
+                          state: form['im-state'].value,
+                          pincode: form['im-pincode'].value,
+                          scstSpouse: form['scst-spouse'].value,
+                          accountHolderName: form['im-account-holder'].value,
+                          bankName: form['im-bank-name']?.value || "",
+                          accountNumber: form['im-account-number'].value,
+                          ifscCode: form['im-ifsc-code'].value
+                        };
+                        setIntercasteFormData(updatedData);
+                        setShowIntercasteReviewModal(true);
+                      }} className="space-y-6">
+
+                        {/* Husband's Details */}
+                        <div className="space-y-4">
+                          <h3 className="text-lg font-semibold flex items-center gap-2">
+                            <Users className="h-5 w-5 text-accent" />
+                            Husband's Details
+                          </h3>
+
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                              <Label htmlFor="husband-name">Full Name *</Label>
+                              <Input
+                                id="husband-name"
+                                placeholder="Enter husband's full name"
+                                required
+                              />
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="husband-aadhaar">Aadhaar Number *</Label>
+                              <Input
+                                id="husband-aadhaar"
+                                placeholder="XXXX-XXXX-XXXX"
+                                required
+                                maxLength={14}
+                              />
+                              <p className="text-xs text-muted-foreground">
+                                Used only for verification
+                              </p>
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="husband-mobile">Mobile Number *</Label>
+                              <Input
+                                id="husband-mobile"
+                                type="tel"
+                                placeholder="+91 XXXXX XXXXX"
+                                required
+                              />
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="husband-email">Email (Optional)</Label>
+                              <Input
+                                id="husband-email"
+                                type="email"
+                                placeholder="husband@example.com"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Wife's Details */}
+                        <div className="space-y-4">
+                          <h3 className="text-lg font-semibold flex items-center gap-2">
+                            <Users className="h-5 w-5 text-accent" />
+                            Wife's Details
+                          </h3>
+
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                              <Label htmlFor="wife-name">Full Name *</Label>
+                              <Input
+                                id="wife-name"
+                                placeholder="Enter wife's full name"
+                                required
+                              />
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="wife-aadhaar">Aadhaar Number *</Label>
+                              <Input
+                                id="wife-aadhaar"
+                                placeholder="XXXX-XXXX-XXXX"
+                                required
+                                maxLength={14}
+                              />
+                              <p className="text-xs text-muted-foreground">
+                                Used only for verification
+                              </p>
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="wife-mobile">Mobile Number *</Label>
+                              <Input
+                                id="wife-mobile"
+                                type="tel"
+                                placeholder="+91 XXXXX XXXXX"
+                                required
+                              />
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="wife-email">Email (Optional)</Label>
+                              <Input
+                                id="wife-email"
+                                type="email"
+                                placeholder="wife@example.com"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Address Details */}
+                        <div className="space-y-4">
+                          <h3 className="text-lg font-semibold flex items-center gap-2">
+                            <Home className="h-5 w-5 text-accent" />
+                            Address Details
+                          </h3>
+
+                          <div className="space-y-4">
+                            <div className="space-y-2">
+                              <Label htmlFor="current-address">Current Address *</Label>
+                              <textarea
+                                id="current-address"
+                                rows={3}
+                                className="w-full px-3 py-2 rounded-md border border-input bg-background"
+                                placeholder="Enter complete current address"
+                                required
+                              />
+                            </div>
+
+                            <div className="grid md:grid-cols-3 gap-4">
+                              <div className="space-y-2">
+                                <Label htmlFor="im-district">District *</Label>
+                                <Input
+                                  id="im-district"
+                                  placeholder="Your District"
+                                  required
+                                />
+                              </div>
+
+                              <div className="space-y-2">
+                                <Label htmlFor="im-state">State *</Label>
+                                <select
+                                  id="im-state"
+                                  className="w-full h-10 px-3 rounded-md border border-input bg-background"
+                                  required
+                                >
+                                  <option value="">Select State</option>
+                                  <option value="andhra-pradesh">Andhra Pradesh</option>
+                                  <option value="bihar">Bihar</option>
+                                  <option value="delhi">Delhi</option>
+                                  <option value="gujarat">Gujarat</option>
+                                  <option value="maharashtra">Maharashtra</option>
+                                  <option value="tamil-nadu">Tamil Nadu</option>
+                                  <option value="uttar-pradesh">Uttar Pradesh</option>
+                                  <option value="karnataka">Karnataka</option>
+                                  <option value="kerala">Kerala</option>
+                                  <option value="madhya-pradesh">Madhya Pradesh</option>
+                                  <option value="rajasthan">Rajasthan</option>
+                                  <option value="west-bengal">West Bengal</option>
+                                </select>
+                              </div>
+
+                              <div className="space-y-2">
+                                <Label htmlFor="im-pincode">Pincode *</Label>
+                                <Input
+                                  id="im-pincode"
+                                  placeholder="6-digit pincode"
+                                  maxLength={6}
+                                  required
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* SC/ST Spouse Selection */}
+                        <div className="space-y-4">
+                          <h3 className="text-lg font-semibold flex items-center gap-2">
+                            <Shield className="h-5 w-5 text-accent" />
+                            Caste Information
+                          </h3>
+
+                          <div className="space-y-2">
+                            <Label htmlFor="scst-spouse">Who belongs to SC/ST category? *</Label>
+                            <select
+                              id="scst-spouse"
+                              className="w-full h-10 px-3 rounded-md border border-input bg-background"
+                              required
+                            >
+                              <option value="">Select</option>
+                              <option value="husband">Husband</option>
+                              <option value="wife">Wife</option>
+                            </select>
+                            <p className="text-xs text-muted-foreground">
+                              One spouse must be from SC/ST category for eligibility
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Bank Details */}
+                        <div className="space-y-4">
+                          <h3 className="text-lg font-semibold flex items-center gap-2">
+                            <CreditCard className="h-5 w-5 text-accent" />
+                            Bank Details (For Direct Benefit Transfer)
+                          </h3>
+
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                              <Label htmlFor="im-account-holder">Account Holder Name *</Label>
+                              <Input
+                                id="im-account-holder"
+                                placeholder="Enter account holder name"
+                                required
+                              />
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="im-bank-name">Bank Name</Label>
+                              <Input
+                                id="im-bank-name"
+                                placeholder="Enter bank name"
+                              />
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="im-account-number">Bank Account Number *</Label>
+                              <Input
+                                id="im-account-number"
+                                placeholder="Enter bank account number"
+                                required
+                                value={intercasteAccountNumber}
+                                onChange={(e) => setIntercasteAccountNumber(e.target.value)}
+                              />
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="im-confirm-account">Confirm Account Number *</Label>
+                              <Input
+                                id="im-confirm-account"
+                                placeholder="Re-enter account number"
+                                required
+                                value={intercasteConfirmAccountNumber}
+                                onChange={(e) => setIntercasteConfirmAccountNumber(e.target.value)}
+                                className={intercasteAccountNumber && intercasteConfirmAccountNumber && intercasteAccountNumber !== intercasteConfirmAccountNumber ? "border-red-500" : ""}
+                              />
+                              {intercasteAccountNumber && intercasteConfirmAccountNumber && intercasteAccountNumber !== intercasteConfirmAccountNumber && (
+                                <p className="text-xs text-red-500">Account numbers do not match</p>
+                              )}
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="im-ifsc-code">IFSC Code *</Label>
+                              <Input
+                                id="im-ifsc-code"
+                                placeholder="Enter IFSC code"
+                                required
+                                className="uppercase"
+                                onChange={(e) => {
+                                  e.target.value = e.target.value.toUpperCase();
+                                }}
+                              />
+                            </div>
+                          </div>
+
+                          <div className="bg-secondary/5 border border-secondary/20 rounded-lg p-4 flex gap-3">
+                            <Wallet className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
+                            <div className="text-sm">
+                              <p className="text-muted-foreground">
+                                Your bank details are used only for Direct Benefit Transfer (DBT) of approved relief amounts.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Document Upload */}
+                        <div className="space-y-4">
+                          <h3 className="text-lg font-semibold flex items-center gap-2">
+                            <Upload className="h-5 w-5 text-accent" />
+                            Document Upload
+                          </h3>
+
+                          <div className="space-y-3">
+                            <FileUpload
+                              id="proof-of-address"
+                              label="Proof of Address *"
+                              helperText="Electric Bill / Water Bill / Property Tax Bill / Gas Connection Booking Receipt (PDF, JPG - Max 5MB)"
+                              onFileChange={setIntercasteElectricBillFile}
+                              required
+                            />
+
+                            <FileUpload
+                              id="marriage-certificate"
+                              label="Marriage Certificate *"
+                              helperText="PDF, JPG (Max 5MB)"
+                              onFileChange={setIntercasteMarriageCertFile}
+                              required
+                            />
+
+                            <FileUpload
+                              id="scst-certificate"
+                              label="SC/ST Caste Certificate (of SC/ST spouse) *"
+                              helperText="PDF, JPG (Max 5MB)"
+                              onFileChange={setIntercasteScstCertFile}
+                              required
+                            />
+
+                            <FileUpload
+                              id="other-caste-certificate"
+                              label="Caste Certificate (of non-SC/ST spouse) *"
+                              helperText="PDF, JPG (Max 5MB)"
+                              onFileChange={setIntercasteOtherCertFile}
+                              required
+                            />
+                          </div>
+                        </div>
+
+                        {/* Privacy Notice */}
+                        <div className="bg-accent/5 border border-accent/20 rounded-lg p-4 flex gap-3">
+                          <Shield className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                          <div className="text-sm">
+                            <p className="font-medium mb-1">Your Privacy is Protected</p>
+                            <p className="text-muted-foreground">
+                              All data is encrypted end-to-end. You will be identified by a unique Case ID,
+                              not your name. Your personal details are visible only to authorized officers.
+                            </p>
+                          </div>
+                        </div>
+
+                        <Button type="submit" size="lg" className="w-full bg-accent hover:bg-accent-hover">
+                          Review Application
+                        </Button>
+                      </form>
+                    ) : (
+                      /* Success Message */
+                      <div className="space-y-6">
+                        <Card className="p-6 bg-green-50 border-green-200">
+                          <div className="flex items-start gap-4">
+                            <CheckCircle2 className="h-12 w-12 text-green-600 flex-shrink-0" />
+                            <div className="flex-1">
+                              <h3 className="text-2xl font-bold text-green-900 mb-2">
+                                Application Submitted Successfully! ✓
+                              </h3>
+                              <div className="space-y-2">
+                                <p className="text-green-800">
+                                  Your intercaste marriage relief application has been registered.
+                                </p>
+                                <div className="bg-white rounded-lg p-4 border border-green-300">
+                                  <p className="text-sm text-muted-foreground mb-1">Your Case ID:</p>
+                                  <p className="text-2xl font-bold text-green-900">{intercasteCaseId}</p>
+                                  <p className="text-xs text-muted-foreground mt-2">
+                                    Save this Case ID for tracking your application status
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </Card>
+                      </div>
+                    )}
+
+                    {/* Review Modal */}
+                    {showIntercasteReviewModal && (
+                      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+                        <div className="bg-background rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
+                          <div className="p-6 border-b">
+                            <h2 className="text-2xl font-bold">Review Your Details</h2>
+                            <p className="text-sm text-muted-foreground mt-1">
+                              Please verify all information before submitting
+                            </p>
+                          </div>
+
+                          <div className="p-6 overflow-y-auto max-h-[60vh] space-y-6">
+                            {/* Husband Details */}
+                            <div>
+                              <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
+                                <Users className="h-5 w-5 text-accent" />
+                                Husband's Details
+                              </h3>
+                              <div className="grid md:grid-cols-2 gap-3 text-sm">
+                                <div>
+                                  <p className="text-muted-foreground">Name</p>
+                                  <p className="font-medium">{intercasteFormData.husbandName}</p>
+                                </div>
+                                <div>
+                                  <p className="text-muted-foreground">Aadhaar</p>
+                                  <p className="font-medium">{intercasteFormData.husbandAadhaar}</p>
+                                </div>
+                                <div>
+                                  <p className="text-muted-foreground">Mobile</p>
+                                  <p className="font-medium">{intercasteFormData.husbandMobile}</p>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Wife Details */}
+                            <div className="border-t pt-4">
+                              <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
+                                <Users className="h-5 w-5 text-accent" />
+                                Wife's Details
+                              </h3>
+                              <div className="grid md:grid-cols-2 gap-3 text-sm">
+                                <div>
+                                  <p className="text-muted-foreground">Name</p>
+                                  <p className="font-medium">{intercasteFormData.wifeName}</p>
+                                </div>
+                                <div>
+                                  <p className="text-muted-foreground">Aadhaar</p>
+                                  <p className="font-medium">{intercasteFormData.wifeAadhaar}</p>
+                                </div>
+                                <div>
+                                  <p className="text-muted-foreground">Mobile</p>
+                                  <p className="font-medium">{intercasteFormData.wifeMobile}</p>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Address */}
+                            <div className="border-t pt-4">
+                              <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
+                                <Home className="h-5 w-5 text-accent" />
+                                Address Details
+                              </h3>
+                              <div className="text-sm space-y-2">
+                                <div>
+                                  <p className="text-muted-foreground">Address</p>
+                                  <p className="font-medium">{intercasteFormData.currentAddress}</p>
+                                </div>
+                                <div className="grid md:grid-cols-3 gap-3">
+                                  <div>
+                                    <p className="text-muted-foreground">District</p>
+                                    <p className="font-medium">{intercasteFormData.district}</p>
+                                  </div>
+                                  <div>
+                                    <p className="text-muted-foreground">State</p>
+                                    <p className="font-medium">{intercasteFormData.state}</p>
+                                  </div>
+                                  <div>
+                                    <p className="text-muted-foreground">Pincode</p>
+                                    <p className="font-medium">{intercasteFormData.pincode}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* SC/ST Info */}
+                            <div className="border-t pt-4">
+                              <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
+                                <Shield className="h-5 w-5 text-accent" />
+                                Caste Information
+                              </h3>
+                              <div className="text-sm">
+                                <p className="text-muted-foreground">SC/ST Spouse</p>
+                                <p className="font-medium capitalize">{intercasteFormData.scstSpouse}</p>
+                              </div>
+                            </div>
+
+                            {/* Bank Details */}
+                            <div className="border-t pt-4">
+                              <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
+                                <CreditCard className="h-5 w-5 text-accent" />
+                                Bank Details
+                              </h3>
+                              <div className="grid md:grid-cols-2 gap-3 text-sm">
+                                <div>
+                                  <p className="text-muted-foreground">Account Holder</p>
+                                  <p className="font-medium">{intercasteFormData.accountHolderName}</p>
+                                </div>
+                                <div>
+                                  <p className="text-muted-foreground">Account Number</p>
+                                  <p className="font-medium">{intercasteFormData.accountNumber}</p>
+                                </div>
+                                <div>
+                                  <p className="text-muted-foreground">IFSC Code</p>
+                                  <p className="font-medium">{intercasteFormData.ifscCode}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="p-6 border-t flex gap-3">
+                            <Button
+                              type="button"
+                              variant="outline"
+                              className="flex-1"
+                              onClick={() => setShowIntercasteReviewModal(false)}
+                              disabled={intercasteSubmitting}
+                            >
+                              Edit Details
+                            </Button>
+                            <Button
+                              type="button"
+                              className="flex-1 bg-accent hover:bg-accent-hover"
+                              onClick={async () => {
+                                setIntercasteSubmitting(true);
+                                try {
+                                  // Call the Intercaste API
+                                  const response = await intercasteAPI.create(intercasteFormData);
+
+                                  if (response.success) {
+                                    const grievanceId = response.data.grievanceId;
+                                    const newCaseId = response.data.caseId;
+
+                                    // Upload documents
+                                    const documentUploads = [];
+
+                                    if (intercasteElectricBillFile) {
+                                      documentUploads.push(
+                                        documentAPI.upload(intercasteElectricBillFile, grievanceId, 'addressProof')
+                                          .catch(err => console.error('Address proof upload failed:', err))
+                                      );
+                                    }
+
+                                    if (intercasteMarriageCertFile) {
+                                      documentUploads.push(
+                                        documentAPI.upload(intercasteMarriageCertFile, grievanceId, 'marriageCertificate')
+                                          .catch(err => console.error('Marriage certificate upload failed:', err))
+                                      );
+                                    }
+
+                                    if (intercasteScstCertFile) {
+                                      documentUploads.push(
+                                        documentAPI.upload(intercasteScstCertFile, grievanceId, 'scstCertificate')
+                                          .catch(err => console.error('SC/ST certificate upload failed:', err))
+                                      );
+                                    }
+
+                                    if (intercasteOtherCertFile) {
+                                      documentUploads.push(
+                                        documentAPI.upload(intercasteOtherCertFile, grievanceId, 'otherCasteCertificate')
+                                          .catch(err => console.error('Other caste certificate upload failed:', err))
+                                      );
+                                    }
+
+                                    // Wait for all uploads to complete
+                                    if (documentUploads.length > 0) {
+                                      await Promise.all(documentUploads);
+                                    }
+
+                                    setIntercasteCaseId(newCaseId);
+                                    setIntercasteSuccess(true);
+                                    setShowIntercasteReviewModal(false);
+
+                                    toast({
+                                      title: "Application Submitted Successfully! ✓",
+                                      description: `Your Case ID is: ${newCaseId}. Documents uploaded. A confirmation email has been sent.`,
+                                    });
+                                  } else {
+                                    throw new Error(response.message || 'Submission failed');
+                                  }
+                                } catch (error) {
+                                  console.error('Intercaste submission error:', error);
+                                  toast({
+                                    title: "Submission Failed",
+                                    description: error.response?.data?.message || error.message || "Please try again.",
+                                    variant: "destructive"
+                                  });
+                                } finally {
+                                  setIntercasteSubmitting(false);
+                                }
+                              }}
+                              disabled={intercasteSubmitting}
+                            >
+                              {intercasteSubmitting ? "Submitting..." : "Confirm & Submit"}
+                            </Button>
+                          </div>
+                        </div>
                       </div>
                     )}
                   </div>
