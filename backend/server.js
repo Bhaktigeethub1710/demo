@@ -61,6 +61,22 @@ app.get('/api', (req, res) => {
     });
 });
 
+// Serve frontend in production
+if (process.env.NODE_ENV === 'production') {
+    const path = require('path');
+    // Serve static files from the frontend build directory
+    app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+    // Handle React routing, return all requests to React app
+    app.get('*', (req, res) => {
+        // Skip API routes
+        if (req.path.startsWith('/api')) {
+            return res.status(404).json({ message: 'API endpoint not found' });
+        }
+        res.sendFile(path.resolve(__dirname, '../frontend', 'dist', 'index.html'));
+    });
+}
+
 // Mount routes
 app.use('/api/auth', require('./src/routes/auth'));
 app.use('/api/documents', require('./src/routes/documentRoutes'));
