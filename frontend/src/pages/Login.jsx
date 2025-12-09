@@ -22,7 +22,7 @@ const Login = () => {
 
   // Auto-select role if provided in URL
   useEffect(() => {
-    if (urlRole && (urlRole === 'victim' || urlRole === 'officer')) {
+    if (urlRole === 'victim') {
       setSelectedRole(urlRole);
     }
   }, [urlRole]);
@@ -78,13 +78,7 @@ const Login = () => {
       icon: Users,
       color: "bg-accent",
     },
-    {
-      id: "officer",
-      title: t('login.officer'),
-      description: t('portals.officerPortal.description'),
-      icon: FileText,
-      color: "bg-primary",
-    },
+
   ];
 
   // If no role selected, show role selection screen
@@ -132,6 +126,11 @@ const Login = () => {
   }
 
   const currentRole = roles.find(r => r.id === selectedRole);
+
+  if (!currentRole) {
+    setSelectedRole(null);
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-dashboard">

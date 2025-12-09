@@ -15,14 +15,12 @@ import Login from "./pages/Login";
 import Transparency from "./pages/Transparency";
 import Grievances from "./pages/Grievances";
 import VictimPortal from "./pages/VictimPortal";
-import OfficerPortal from "./pages/OfficerPortal";
-import ForgotPassword from "./pages/ForgotPassword";
-import ResetPassword from "./pages/ResetPassword";
 import VictimRegistration from "./pages/VictimRegistration";
-import OfficerRegistration from "./pages/OfficerRegistration";
 import EmergencyFund from "./pages/EmergencyFund";
 import TrackGrievance from "./pages/TrackGrievance";
 import NotFound from "./pages/NotFound";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 const queryClient = new QueryClient();
 
@@ -53,18 +51,10 @@ const App = () => {
                     </ProtectedRoute>
                   }
                 />
-                <Route
-                  path="/officer-portal"
-                  element={
-                    <ProtectedRoute requiredRole="officer">
-                      <OfficerPortal />
-                    </ProtectedRoute>
-                  }
-                />
+
                 <Route path="/forgot-password" element={<ForgotPassword />} />
                 <Route path="/reset-password/:token" element={<ResetPassword />} />
                 <Route path="/register/victim" element={<VictimRegistration />} />
-                <Route path="/register/officer" element={<OfficerRegistration />} />
                 <Route path="/emergency-fund" element={<EmergencyFund />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />

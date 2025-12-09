@@ -46,17 +46,10 @@ const Navbar = () => {
     navigateToRoleTarget(navigate, location, '/victim-portal', 'victim', { isAuthenticated, user }, toast);
   };
 
-  const handleOfficerPortalClick = (e) => {
-    e.preventDefault();
-    setIsOpen(false);
-    navigateToRoleTarget(navigate, location, '/officer-portal', 'officer', { isAuthenticated, user }, toast);
-  };
-
   // Define navigation links based on login state
   const loggedOutNavLinks = [
     { label: t('navbar.home'), path: "/", type: "link" },
     { label: t('navbar.victimPortal'), path: "/victim-portal", type: "portal", role: "victim", handler: handleVictimPortalClick },
-    { label: t('navbar.officerPortal'), path: "/officer-portal", type: "portal", role: "officer", handler: handleOfficerPortalClick },
     { label: t('navbar.emergencyFund'), path: "/emergency-fund", type: "link" },
     { label: t('navbar.transparencyHub'), path: "/transparency", type: "link" },
     {
@@ -85,9 +78,6 @@ const Navbar = () => {
 
     if (user.role === 'victim') {
       // Victims see no navigation links
-      return [];
-    } else if (user.role === 'officer') {
-      // Officers see no navigation links
       return [];
     }
 

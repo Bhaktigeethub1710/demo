@@ -84,14 +84,6 @@ const Index = () => {
       color: "bg-accent",
     },
     {
-      title: t('portals.officerPortal.title'),
-      description: t('portals.officerPortal.description'),
-      icon: FileText,
-      path: "/officer-portal",
-      role: "officer",
-      color: "bg-primary",
-    },
-    {
       title: t('portals.emergencyFund.title'),
       description: t('portals.emergencyFund.description'),
       icon: Clock,
@@ -275,58 +267,7 @@ const Index = () => {
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="officer" className="border rounded-lg px-6 bg-card">
-                <AccordionTrigger className="hover:no-underline">
-                  <div className="flex items-center gap-3">
-                    <div className="bg-primary w-10 h-10 rounded-lg flex items-center justify-center">
-                      <FileText className="h-5 w-5 text-white" />
-                    </div>
-                    <span className="text-xl font-semibold">Officer Portal</span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="pt-4 pb-6 text-muted-foreground space-y-4">
-                  <p className="text-foreground font-medium">
-                    Empowering district and state officers with intelligent tools for swift case verification and fund sanction.
-                  </p>
-                  <div className="space-y-3">
-                    <div className="flex gap-3">
-                      <BarChart3 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                      <div>
-                        <p className="font-medium text-foreground">Comprehensive Dashboard</p>
-                        <p className="text-sm">Review all submitted cases with priority sorting, pending actions, and case timelines at a glance.</p>
-                      </div>
-                    </div>
-                    <div className="flex gap-3">
-                      <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                      <div>
-                        <p className="font-medium text-foreground">AI-Based Verification</p>
-                        <p className="text-sm">Get intelligent insights through automated cross-checking with CCTNS/eCourts for faster processing.</p>
-                      </div>
-                    </div>
-                    <div className="flex gap-3">
-                      <FileText className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                      <div>
-                        <p className="font-medium text-foreground">Document Validation</p>
-                        <p className="text-sm">Access detailed validation reports, approve or query applications with remarks and recommendations.</p>
-                      </div>
-                    </div>
-                    <div className="flex gap-3">
-                      <Building2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                      <div>
-                        <p className="font-medium text-foreground">Financial Coordination</p>
-                        <p className="text-sm">Seamlessly coordinate with financial institutions and track fund disbursal progress in real-time.</p>
-                      </div>
-                    </div>
-                    <div className="flex gap-3">
-                      <TrendingUp className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                      <div>
-                        <p className="font-medium text-foreground">Performance Analytics</p>
-                        <p className="text-sm">Monitor processing times, prioritize urgent cases, and access data-driven insights for better decision-making.</p>
-                      </div>
-                    </div>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
+
 
               <AccordionItem value="financial" className="border rounded-lg px-6 bg-card">
                 <AccordionTrigger className="hover:no-underline">
