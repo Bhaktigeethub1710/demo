@@ -54,8 +54,9 @@ app.get('/api', (req, res) => {
             '/api/documents/grievance/:grievanceId',
             '/api/grievances/create',
             '/api/grievances/my-grievances',
-            '/api/cases (coming soon)',
-            '/api/officers (coming soon)'
+            '/api/funds/flow - Fund disbursement flow explanation',
+            '/api/funds/stats - Fund statistics',
+            '/api/funds/seed-demo - Create demo fund data'
         ]
     });
 });
@@ -66,6 +67,7 @@ app.use('/api/documents', require('./src/routes/documentRoutes'));
 app.use('/api/grievances', require('./src/routes/grievanceRoutes'));
 app.use('/api/tickets', require('./src/routes/grievanceTicketRoutes'));
 app.use('/api/intercaste', require('./src/routes/intercasteRoutes'));
+app.use('/api/funds', require('./src/routes/fundRoutes'));
 
 
 // TODO: Import and use additional routes

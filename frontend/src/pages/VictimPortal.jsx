@@ -1698,32 +1698,36 @@ const VictimPortal = () => {
                             <FileUpload
                               id="proof-of-address"
                               label="Proof of Address *"
-                              helperText="Electric Bill / Water Bill / Property Tax Bill / Gas Connection Booking Receipt (PDF, JPG - Max 5MB)"
+                              helperText="Electric Bill / Water Bill / Property Tax Bill / Gas Connection Booking Receipt (PDF, JPG - Max 5MB) - Document will be verified"
                               onFileChange={setIntercasteElectricBillFile}
+                              expectedDocumentType="addressProof"
                               required
                             />
 
                             <FileUpload
                               id="marriage-certificate"
                               label="Marriage Certificate *"
-                              helperText="PDF, JPG (Max 5MB)"
+                              helperText="PDF, JPG (Max 5MB) - Document will be verified"
                               onFileChange={setIntercasteMarriageCertFile}
+                              expectedDocumentType="marriageCertificate"
                               required
                             />
 
                             <FileUpload
                               id="scst-certificate"
                               label="SC/ST Caste Certificate (of SC/ST spouse) *"
-                              helperText="PDF, JPG (Max 5MB)"
+                              helperText="PDF, JPG (Max 5MB) - Document will be verified"
                               onFileChange={setIntercasteScstCertFile}
+                              expectedDocumentType="scstCertificate"
                               required
                             />
 
                             <FileUpload
                               id="other-caste-certificate"
                               label="Caste Certificate (of non-SC/ST spouse) *"
-                              helperText="PDF, JPG (Max 5MB)"
+                              helperText="PDF, JPG (Max 5MB) - Document will be verified"
                               onFileChange={setIntercasteOtherCertFile}
+                              expectedDocumentType="otherCasteCertificate"
                               required
                             />
                           </div>
@@ -1915,50 +1919,76 @@ const VictimPortal = () => {
                                     const grievanceId = response.data.grievanceId;
                                     const newCaseId = response.data.caseId;
 
-                                    // Upload documents
-                                    const documentUploads = [];
+                                    // Upload documents and track errors
+                                    const uploadResults = [];
+                                    const uploadErrors = [];
 
+                                    // Address Proof upload
                                     if (intercasteElectricBillFile) {
-                                      documentUploads.push(
-                                        documentAPI.upload(intercasteElectricBillFile, grievanceId, 'addressProof')
-                                          .catch(err => console.error('Address proof upload failed:', err))
-                                      );
+                                      try {
+                                        await documentAPI.upload(intercasteElectricBillFile, grievanceId, 'addressProof');
+                                        uploadResults.push('Address Proof');
+                                      } catch (err) {
+                                        const errorMsg = err.response?.data?.message || 'Upload failed';
+                                        uploadErrors.push(`Address Proof: ${errorMsg}`);
+                                      }
                                     }
 
+                                    // Marriage Certificate upload
                                     if (intercasteMarriageCertFile) {
-                                      documentUploads.push(
-                                        documentAPI.upload(intercasteMarriageCertFile, grievanceId, 'marriageCertificate')
-                                          .catch(err => console.error('Marriage certificate upload failed:', err))
-                                      );
+                                      try {
+                                        await documentAPI.upload(intercasteMarriageCertFile, grievanceId, 'marriageCertificate');
+                                        uploadResults.push('Marriage Certificate');
+                                      } catch (err) {
+                                        const errorMsg = err.response?.data?.message || 'Upload failed';
+                                        uploadErrors.push(`Marriage Certificate: ${errorMsg}`);
+                                      }
                                     }
 
+                                    // SC/ST Certificate upload
                                     if (intercasteScstCertFile) {
-                                      documentUploads.push(
-                                        documentAPI.upload(intercasteScstCertFile, grievanceId, 'scstCertificate')
-                                          .catch(err => console.error('SC/ST certificate upload failed:', err))
-                                      );
+                                      try {
+                                        await documentAPI.upload(intercasteScstCertFile, grievanceId, 'scstCertificate');
+                                        uploadResults.push('SC/ST Certificate');
+                                      } catch (err) {
+                                        const errorMsg = err.response?.data?.message || 'Upload failed';
+                                        uploadErrors.push(`SC/ST Certificate: ${errorMsg}`);
+                                      }
                                     }
 
+                                    // Other Caste Certificate upload
                                     if (intercasteOtherCertFile) {
-                                      documentUploads.push(
-                                        documentAPI.upload(intercasteOtherCertFile, grievanceId, 'otherCasteCertificate')
-                                          .catch(err => console.error('Other caste certificate upload failed:', err))
-                                      );
-                                    }
-
-                                    // Wait for all uploads to complete
-                                    if (documentUploads.length > 0) {
-                                      await Promise.all(documentUploads);
+                                      try {
+                                        await documentAPI.upload(intercasteOtherCertFile, grievanceId, 'otherCasteCertificate');
+                                        uploadResults.push('Non SC/ST Certificate');
+                                      } catch (err) {
+                                        const errorMsg = err.response?.data?.message || 'Upload failed';
+                                        uploadErrors.push(`Non SC/ST Certificate: ${errorMsg}`);
+                                      }
                                     }
 
                                     setIntercasteCaseId(newCaseId);
                                     setIntercasteSuccess(true);
                                     setShowIntercasteReviewModal(false);
 
+                                    // Show success toast
                                     toast({
-                                      title: "Application Submitted Successfully! ✓",
-                                      description: `Your Case ID is: ${newCaseId}. Documents uploaded. A confirmation email has been sent.`,
+                                      title: "Application Submitted! ✓",
+                                      description: `Case ID: ${newCaseId}. ${uploadResults.length} document(s) uploaded.`,
                                     });
+
+                                    // Show errors for failed documents
+                                    if (uploadErrors.length > 0) {
+                                      uploadErrors.forEach((errorMsg, index) => {
+                                        setTimeout(() => {
+                                          toast({
+                                            title: "Document Upload Failed",
+                                            description: errorMsg,
+                                            variant: "destructive"
+                                          });
+                                        }, (index + 1) * 500); // Stagger error toasts
+                                      });
+                                    }
                                   } else {
                                     throw new Error(response.message || 'Submission failed');
                                   }

@@ -893,6 +893,9 @@ const createIntercasteGrievance = async (req, res) => {
             pincode,
             // SC/ST Spouse
             scstSpouse,
+            // Unique placeholder for firCaseNumber to avoid duplicate key error
+            // Since intercaste cases don't have FIR, we use the caseId as placeholder
+            firCaseNumber: `IM-${caseId}`,
             // Bank Details  
             accountHolderName,
             bankName,

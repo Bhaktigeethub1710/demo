@@ -144,6 +144,168 @@ const DOCUMENT_KEYWORDS = {
         ],
         supportive: ['ifsc', 'branch', 'balance', 'transaction', 'deposit', 'withdrawal'],
         minConfidenceScore: 0.15
+    },
+
+    // ============ INTERCASTE MARRIAGE DOCUMENTS ============
+
+    // Marriage Certificate
+    marriageCertificate: {
+        required: [
+            // Header keywords
+            'certificate of marriage',
+            'marriage certificate',
+            'marriage registration',
+            'compulsory marriage registration',
+            // Form phrases
+            'certified that a marriage between',
+            'marriage between',
+            'duly registered',
+            'solemnized at',
+            'date of marriage',
+            'date of registration',
+            // Parties
+            'groom',
+            'bride',
+            'husband',
+            'wife',
+            // Officials
+            'marriage officer',
+            'marriage registrar',
+            'signature of groom',
+            'signature of bride',
+            'witness'
+        ],
+        supportive: [
+            'son of', 'daughter of', 'father\'s name', 'mother\'s name',
+            'age of the groom', 'age of the bride', 'born on', 'date of birth',
+            'resident at', 'address of the groom', 'address of the bride',
+            'office of marriage officer', 'district magistrate',
+            'particulars furnished', 'delhi', 'mumbai', 'maharashtra',
+            'digitally signed', 'information technology act',
+            'order-2014', 'order 2014', 'revenue department'
+        ],
+        minConfidenceScore: 0.08
+    },
+
+    // SC/ST Caste Certificate
+    scstCertificate: {
+        required: [
+            // Header keywords (from official SC/ST form)
+            'scheduled caste',
+            'scheduled tribe',
+            'form of caste certificate',
+            'शेड्यूल्ड कास्ट',
+            'अनुसूचित जाति',
+            'अनुसूचित जनजाति',
+            // Constitutional references
+            'presidential order',
+            'constitution (scheduled castes) order',
+            'constitution (scheduled tribes) order',
+            // Certification phrases
+            'this is to certify that',
+            'belongs to the',
+            'recognised as a scheduled caste',
+            'recognised as a scheduled tribe',
+            // Legal references
+            'scheduled caste and scheduled tribes lists',
+            'scheduled castes union territories order',
+            'scheduled tribes union territories order',
+            'reorganisation act',
+            'himachal pradesh act',
+            'north eastern area',
+            'jammu and kashmir scheduled castes order',
+            'andaman and nicobar islands',
+            'dadra and nagar haveli',
+            'pondicherry',
+            'uttar pradesh order',
+            'goa daman and diu',
+            'nagaland',
+            'sikkim'
+        ],
+        supportive: [
+            'son of', 'daughter of', 'wife of', 'shri', 'smt', 'kumari',
+            'village', 'town', 'district', 'division', 'state', 'union territory',
+            'caste', 'tribe', 'community',
+            'migrated from', 'administration',
+            'issued on the basis', 'district magistrate', 'collector',
+            'tehsildar', 'certificate issued to'
+        ],
+        minConfidenceScore: 0.08
+    },
+
+    // OBC/SEBC/Non-Creamy Layer Certificate
+    otherCasteCertificate: {
+        required: [
+            // SEBC/OBC specific headers
+            'socially and educationally backward class',
+            'sebc',
+            'obc',
+            'other backward class',
+            'backward class',
+            'caste certificate (part-a)',
+            'caste certificate part-a',
+            'non-creamy layer certificate',
+            'non-creamy layer certificate (part-b)',
+            'non-creamy layer',
+            'creamy-layer',
+            'परिशिष्ट – अ',
+            'परिशिष्ट-अ',
+            // Official phrases
+            'this is to certify that',
+            'belongs to the',
+            'state of maharashtra',
+            'government resolution',
+            'social justice',
+            'special assistance',
+            // Category names
+            'maratha',
+            'kunbi',
+            'vimukt jati',
+            'de-notified tribe',
+            'nomadic tribe',
+            'special backward category'
+        ],
+        supportive: [
+            'son of', 'daughter of', 'village', 'taluka', 'district', 'nanded', 'pune',
+            'government of maharashtra gazette',
+            'maharashtra state reservation',
+            'cbc-10/2013', 'pra.kra', 'mavak',
+            'vjnt', 'vjnt-1',
+            'sub divisional officer', 'sdo', 'dy.col',
+            'outward no', 'reg./case no',
+            'mahaonline.gov.in', 'digitally signed',
+            'valid for the period', 'date of issue',
+            'documents verified', 'school leaving certificate',
+            'income certificate', 'tahsildar', 'photo id'
+        ],
+        minConfidenceScore: 0.08
+    },
+
+    // Address Proof (Electric Bill, Water Bill, etc.)
+    addressProof: {
+        required: [
+            'electricity bill',
+            'electric bill',
+            'water bill',
+            'property tax',
+            'gas connection',
+            'gas bill',
+            'proof of address',
+            'utility bill',
+            'consumer number',
+            'bill number',
+            'meter number',
+            'service connection'
+        ],
+        supportive: [
+            'billing date', 'due date', 'amount due', 'units consumed',
+            'reading', 'previous reading', 'current reading',
+            'residential', 'domestic', 'consumer name',
+            'address', 'flat', 'society', 'plot', 'ward',
+            'mahanagar gas', 'msedcl', 'tata power', 'adani',
+            'municipal corporation', 'nagar palika'
+        ],
+        minConfidenceScore: 0.10
     }
 };
 
@@ -373,11 +535,16 @@ async function verifyDocumentType(fileBuffer, mimeType, expectedType) {
 
     // Type aliases for flexible matching
     const typeAliases = {
-        'castecertificate': ['castecertificate', 'caste'],
+        'castecertificate': ['castecertificate', 'caste', 'othercastecertificate'],
         'fir': ['fir'],
         'aadhaar': ['aadhaar', 'aadhar'],
         'medical': ['medical'],
-        'bankpassbook': ['bankpassbook', 'bank']
+        'bankpassbook': ['bankpassbook', 'bank'],
+        // Intercaste marriage documents
+        'marriagecertificate': ['marriagecertificate', 'marriage'],
+        'scstcertificate': ['scstcertificate', 'scheduledcaste', 'scheduledtribe'],
+        'othercastecertificate': ['othercastecertificate', 'sebc', 'obc', 'castecertificate'],
+        'addressproof': ['addressproof', 'electricbill', 'utilitybill']
     };
 
     // Check if types match
@@ -440,13 +607,23 @@ async function verifyDocumentType(fileBuffer, mimeType, expectedType) {
  */
 function getDocumentLabel(docType) {
     const labels = {
+        // Atrocity case documents
         'fir': 'FIR (First Information Report)',
         'casteCertificate': 'Caste Certificate',
         'castecertificate': 'Caste Certificate',
         'aadhaar': 'Aadhaar Card',
         'medical': 'Medical Report',
         'bankPassbook': 'Bank Passbook',
-        'bankpassbook': 'Bank Passbook'
+        'bankpassbook': 'Bank Passbook',
+        // Intercaste marriage documents
+        'marriageCertificate': 'Marriage Certificate',
+        'marriagecertificate': 'Marriage Certificate',
+        'scstCertificate': 'SC/ST Caste Certificate',
+        'scstcertificate': 'SC/ST Caste Certificate',
+        'otherCasteCertificate': 'OBC/SEBC Caste Certificate',
+        'othercastecertificate': 'OBC/SEBC Caste Certificate',
+        'addressProof': 'Address Proof (Utility Bill)',
+        'addressproof': 'Address Proof (Utility Bill)'
     };
     return labels[docType] || docType;
 }

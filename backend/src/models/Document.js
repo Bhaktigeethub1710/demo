@@ -9,7 +9,12 @@ const documentSchema = new mongoose.Schema({
     },
     documentType: {
         type: String,
-        enum: ['aadhaar', 'fir', 'medical', 'bankPassbook', 'casteCertificate', 'other'],
+        enum: [
+            // Atrocity case documents
+            'aadhaar', 'fir', 'medical', 'bankPassbook', 'casteCertificate', 'other',
+            // Intercaste marriage documents
+            'addressProof', 'marriageCertificate', 'scstCertificate', 'otherCasteCertificate'
+        ],
         required: true
     },
     originalFileName: {
